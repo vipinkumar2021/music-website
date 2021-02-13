@@ -13,7 +13,7 @@ router.post('/', (req, res, next) => {
   contactUsMessageDetails.save((err) => {
     if(err) throw err;
 
-    res.render('index', {title: 'SaReGaMa Music Academy & GMP Studio', msg: 'Message Submitted Successfully, You will be contacted soon. Thanks!' });
+    res.render('index', {title: 'Music-Website', msg: 'Message Submitted Successfully, You will be contacted soon. Thanks!' });
 
   });
 });

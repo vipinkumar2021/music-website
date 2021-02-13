@@ -1,0 +1,22 @@
+<%- include('header') %>
+
+<div class="item item3 main">
+    <div class="container admin">
+        <h1>Welcome to Admin Section</h1> 
+        
+          <% if(msg != ''){ %>
+            <h1 style="color: lightgreen;"><%= msg %></h1>
+          <% } %> 
+          
+        <button onclick="openSignInModal()">Admin Staff Log in </button><br/>
+        <button onclick="openSignUpAdminModal()">Admin Staff Account Register </button>
+    </div> 
+  
+  </div>
+  <%- include('modal') %>
+<%- include('modaladmin') %>
+<%- include('footer') %>
+
+
+
+
