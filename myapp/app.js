@@ -10,6 +10,16 @@ var galleryRouter = require('./routes/gallery');
 var servicesRouter = require('./routes/services');
 var contactusRouter = require('./routes/contactus');
 var adminRouter = require('./routes/admin');
+var musicclassesRouter = require('./routes/musicclasses');
+var audiorecordyoursongRouter = require('./routes/audiorecordyoursong');
+var videoshootyoursongRouter = require('./routes/videoshootyoursong');
+var bookliveconcertRouter = require('./routes/bookliveconcert');
+var vocalclassesRouter = require('./routes/vocalclasses');
+var guitarclassesRouter = require('./routes/guitarclasses');
+var tablaclassesRouter = require('./routes/tablaclasses');
+var pianoclassesRouter = require('./routes/pianoclasses');
+var harmoniumclassesRouter = require('./routes/harmoniumclasses');
+var musicproductionRouter = require('./routes/musicproduction');
 
 var app = express();
 
@@ -29,6 +39,16 @@ app.use('/gallery', galleryRouter);
 app.use('/services', servicesRouter);
 app.use('/contactus', contactusRouter);
 app.use('/admin', adminRouter);
+app.use('/musicclasses', musicclassesRouter);
+app.use('/audiorecordyoursong', audiorecordyoursongRouter);
+app.use('/videoshootyoursong', videoshootyoursongRouter);
+app.use('/bookliveconcert', bookliveconcertRouter);
+app.use('/vocalclasses', vocalclassesRouter);
+app.use('/guitarclasses', guitarclassesRouter);
+app.use('/tablaclasses', tablaclassesRouter);
+app.use('/pianoclasses', pianoclassesRouter);
+app.use('/harmoniumclasses', harmoniumclassesRouter);
+app.use('/musicproduction', musicproductionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
