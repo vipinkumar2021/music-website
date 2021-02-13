@@ -621,6 +621,29 @@ body {
    padding-bottom: 25px;
    color: aliceblue;
  }
+ .main .services ul {
+   padding-left: 25% ;
+   font-size: 20px;
+   font-weight: bold;
+ }
+ .main .services ul li {
+   list-style: none;
+ }
+ .main .services ul li a {
+   text-decoration: none;
+ }
+
+ .main .music-classes ul {
+  padding-left: 25% ;
+  font-size: 20px;
+  font-weight: bold;
+}
+.main .music-classes ul li {
+  list-style: none;
+}
+.main .music-classes ul li a {
+  text-decoration: none;
+}
  /* Services Css ends here*/
 /* sign in modal css starts here */
 .modal-parent-signin {
