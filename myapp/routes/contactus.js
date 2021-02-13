@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var contactusModel = require('../modules/contactusschema');
+var contactusModel = require("../modules/contactusschema");
 
 router.post('/', (req, res, next) => {
   var contactUsMessageDetails = new contactusModel({
