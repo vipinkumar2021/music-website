@@ -391,7 +391,10 @@ function checkMobileNumber(req, res, next) {
   
       customerDetails.save((err )=> {
         if(err) throw err;
+        res.render('signupcustomer', { title: 'frontendwebdeveloper', msg:'Please check the One Time Password (OTP) sent to your Email and enter it here', adminDetails: ''}); 
+
   //Send OTP Email
+  /* uncomment it later
         var output = `
       <h3>Hi, Your One Time Password for Account Activation is ${Onetimepassword}</h3>
       <p>Please Enter the One Time Password in the opened link and press Activate Account</p>   
@@ -416,7 +419,9 @@ function checkMobileNumber(req, res, next) {
     } else {
       res.render('signupcustomer', { title: 'frontendwebdeveloper', msg:'Please check the One Time Password (OTP) sent to your Email and enter it here', adminDetails: ''}); 
     }
-  });      
+    
+  });   
+  uncomment it later */   
       });     
     });
 
