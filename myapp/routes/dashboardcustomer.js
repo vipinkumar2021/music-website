@@ -25,6 +25,7 @@ function checkLoginUser(req, res, next) {
 */
 
 /* GET home page. */ //Exactally Correct One
+/* uncomment it later
 router.get('/',  function(req, res, next) {
   var loginUser = {
     loginUserCustomer: localStorage.getItem('customerLoginUserName'),
@@ -46,16 +47,26 @@ router.get('/',  function(req, res, next) {
       res.render('dashboardadmin', { title: 'Frontend Webdeveloper', loginUser: loginUser.loginUserAdmin, staffdata: '', staffid: '', msg: '', file: '', uploadedImage: '', savedData: savedData });
      });
       */
-     res.redirect('dashboardadmin');
+   /* uncomment it later
+      res.redirect('dashboardadmin');
    // res.render('dashboardtadmin', { title: 'Front End Web Developer', msg:'', loginUser: loginUser.loginUserAdmin});
   } else {
     res.redirect('/');
   }   
 });
 
+ uncomment it later */
 
+ 
 
+ router.get('/',  function(req, res, next) {
 
-
-
+    var loginUser = localStorage.getItem('customerLoginUsername');
+    if(loginUser) {
+        res.render('dashboardcustomer', { title: 'Front End Web Developer', msg:'', loginUser: loginUser/*.loginUserCustomer */});
+    } else {
+        res.redirect('/');
+      }   
+ });
+    
 module.exports = router;

@@ -222,7 +222,7 @@ transporter.sendMail(mailOption, function(err, info) {
   //Customer Sign up sending OTP starts here Exactally Correct
 
   //Get Sign Up Page
-  // uncomment it later
+  /* uncomment it later
   router.get('/signupcustomer',  function(req, res, next) {
     var loginUserCustomer = localStorage.getItem('customerLoginUserName');
     var loginUserEmployee = localStorage.getItem('employeeLoginUserName');
@@ -235,10 +235,10 @@ transporter.sendMail(mailOption, function(err, info) {
     } else if(loginUserAdmin) {
       res.redirect('/dashboardadmin');
     } else {
-      res.render('signupcustomer', { title: 'Front End Web Developer', msg:'', adminDetails: ''});
+      res.render('signupcustomer', { title: 'Front End Web Developer', msg:''});
     }  
   });
-  
+  */
 
    // Sign up Account Activation with OTP strts here
 router.post('/accountactivatedcustomer', function(req, res, next) {
