@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
 require('dotenv').config();
-/*mongoose.connect(process.env.DATABASECUSTOMER, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false,
-useCreateIndex: true});*/
-mongoose.connect(process.env.DATABASEADMIN, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false,
+var uri = process.env.DATABASEADMIN
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false,
     useCreateIndex: true});
 
 var conn = mongoose.Collection;
