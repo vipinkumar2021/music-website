@@ -202,5 +202,33 @@ transporter.sendMail(mailOption, function(err, info) {
 
   //Customer Sign up sending OTP starts here Exactally Correct
 
+   // Sign up Account Activation with OTP strts here
+router.post('/accountactivatedcustomer', function(req, res, next) {
+  var oneTimePassword = req.body.otp;
+  var password = req.body.password;
+  var confirmPassword = req.body.cnfpassword;
+  if(password != confirmPassword || password == '' || confirmPassword == '') {
+    res.render('signupcustomer', { title: 'frontendwebdeveloper', msg:'Password Not Matched, Please Try again', adminDetails: ''});
+  } else {
+    password = bcrypt.hashSync(req.body.password, 10);
+    var getcustomerDetails = customerModel.findOne({Onetimepassword: oneTimePassword}, {});
+    getcustomerDetails.exec((err, ExistingCustomerDetails)=> {
+      if(err) throw err;
+      if(ExistingCustomerDetails == null || ExistingCustomerDetails == '') {
+        res.render('signupcustomer', { title: 'frontendwebdeveloper', msg:'Wrong OTP Entered, Please Try again', adminDetails:''});
+
+      } else {
+        var getCustomerId = ExistingCustomerDetails._id;
+        
+        customerModel.findByIdAndUpdate(getCustomerId, {Onetimepassword: null, Password: password}, {upsert: true}, function(err, updatedCustomerDetails){
+          if(err) throw err;           
+          res.render('index', { title: 'frontendwebdeveloper', msg:'Account Activated Successfully, You may log in now', adminDetails: ''});
+        })
+      }      
+    });        
+  }  
+});
+// Sign up Account Activation with OTP ends here
+
 module.exports = router;
 
