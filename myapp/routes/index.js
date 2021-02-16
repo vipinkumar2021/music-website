@@ -25,6 +25,25 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Music-Website', msg: '' });
 });
 
+/* uncomment it later
+
+router.get('/',  function(req, res, next) {
+  var loginUserCustomer = localStorage.getItem('customerLoginUserName');
+  var loginUserEmployee = localStorage.getItem('employeeLoginUserName');
+  var loginUserAdmin = localStorage.getItem('adminLoginUserName');
+  
+  if(loginUserCustomer){
+    res.redirect('/dashboardcustomer');
+  } else if(loginUserEmployee) {
+    res.redirect('/dashboardemployees');
+  } else if(loginUserAdmin) {
+    res.redirect('/dashboardadmin');
+  } else {
+    res.render('index', { title: 'SaReGaMa Music Academy & GMP Studio', msg:''});
+  }  
+});
+*/
+
 //Middleware Check username Exactly Correct One
 function checkUsername(req, res, next) {
   var username = req.body.usrname;
@@ -202,6 +221,25 @@ transporter.sendMail(mailOption, function(err, info) {
 
   //Customer Sign up sending OTP starts here Exactally Correct
 
+  //Get Sign Up Page
+  /* uncomment it later
+  router.get('/signupcustomer',  function(req, res, next) {
+    var loginUserCustomer = localStorage.getItem('customerLoginUserName');
+    var loginUserEmployee = localStorage.getItem('employeeLoginUserName');
+    var loginUserAdmin = localStorage.getItem('adminLoginUserName');
+    
+    if(loginUserCustomer){
+      res.redirect('/dashboardcustomer');
+    } else if(loginUserEmployee) {
+      res.redirect('/dashboardemployees');
+    } else if(loginUserAdmin) {
+      res.redirect('/dashboardadmin');
+    } else {
+      res.render('signupcustomer', { title: 'Front End Web Developer', msg:''});
+    }  
+  });
+  
+*/
    // Sign up Account Activation with OTP strts here
 router.post('/accountactivatedcustomer', function(req, res, next) {
   var oneTimePassword = req.body.otp;
@@ -229,6 +267,13 @@ router.post('/accountactivatedcustomer', function(req, res, next) {
   }  
 });
 // Sign up Account Activation with OTP ends here
+//jwt for creating a token
+var jwt = require('jsonwebtoken');
+// require local storage 
+if (typeof localStorage === "undefined" || localStorage === null) {
+  const LocalStorage = require('node-localstorage').LocalStorage;
+  localStorage = new LocalStorage('./scratch');
+}
 
 module.exports = router;
 
