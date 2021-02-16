@@ -235,7 +235,7 @@ transporter.sendMail(mailOption, function(err, info) {
     } else if(loginUserAdmin) {
       res.redirect('/dashboardadmin');
     } else {
-      res.render('signupcustomer', { title: 'Front End Web Developer', msg:''});
+      res.render('signupcustomer', { title: 'Front End Web Developer', msg:'', adminDetails: ''});
     }  
   });
   
