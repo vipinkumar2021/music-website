@@ -16,13 +16,7 @@ var nodemailer = require('nodemailer');
 var bcrypt = require('bcryptjs');
 
 
-//jwt for creating a token
-var jwt = require('jsonwebtoken');
-// require local storage 
-if (typeof localStorage === "undefined" || localStorage === null) {
-  const LocalStorage = require('node-localstorage').LocalStorage;
-  localStorage = new LocalStorage('./scratch');
-}
+
 
 
 
