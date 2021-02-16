@@ -147,7 +147,60 @@ function checkMobileNumber(req, res, next) {
   });
  }
 
+//Send Sign Up Sending OTP Exactly Correct One
+router.post('/signupcustomer', checkUsername, checkMobileNumber, checkEmail,   function(req, res, next) {
+  
+  var firstname = req.body.firstname;
+  var lastname = req.body.lastname;
+  var username = req.body.usrname;
+  var mobilenumber = req.body.mobilenumber;
+  var email = req.body.email;  
 
+  
+  var Onetimepassword = crypto.randomBytes(16).toString('hex');
+
+  var customerDetails = new customerModel({
+    Firstname: firstname,
+    Lastname: lastname,
+    Username: username,
+    Mobilenumber: mobilenumber,
+    Email: email,    
+   // Password: password,
+    Onetimepassword: Onetimepassword
+    });
+
+    customerDetails.save((err )=> {
+      if(err) throw err;
+//Send OTP Email
+      var output = `
+    <h3>Hi, Your One Time Password for Account Activation is ${Onetimepassword}</h3>
+    <p>Please Enter the One Time Password in the opened link and press Activate Account</p>   
+`;
+var transporter = nodemailer.createTransport({ 
+  service: 'gmail',
+  auth: {    
+    user: process.env.NODEMAILEMAILUSER,
+    pass: process.env.NODEMAILEMAILPASSWORD    
+  }
+});
+var mailOption = {
+  from: 'resetpa7@gmail.com',
+  to: email, //or use req.body.email
+  subject: 'One Time Password (OTP) for Account Authentication',
+  html: output
+};
+
+transporter.sendMail(mailOption, function(err, info) {
+  if(err) {
+    res.render('signupcustomer', { title: 'frontendwebdeveloper', msg:'Error Occured, Email Sending failed', adminDetails: ''}); 
+  } else {
+    res.render('signupcustomer', { title: 'frontendwebdeveloper', msg:'Please check the One Time Password (OTP) sent to your Email and enter it here', adminDetails: ''}); 
+  }
+});      
+    });     
+  });
+
+  //Customer Sign up sending OTP starts here Exactally Correct
 
 module.exports = router;
 
