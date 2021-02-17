@@ -21,6 +21,7 @@ var pianoclassesRouter = require('./routes/pianoclasses');
 var harmoniumclassesRouter = require('./routes/harmoniumclasses');
 var musicproductionRouter = require('./routes/musicproduction');
 var dashboardcustomerRouter = require('./routes/dashboardcustomer');
+var dashboardadminRouter = require('./routes/dashboardadmin');
 var signoutRouter = require('./routes/signout');
 
 var app = express();
@@ -52,6 +53,7 @@ app.use('/pianoclasses', pianoclassesRouter);
 app.use('/harmoniumclasses', harmoniumclassesRouter);
 app.use('/musicproduction', musicproductionRouter);
 app.use('/dashboardcustomer', dashboardcustomerRouter);
+app.use('/dashboardadmin', dashboardadminRouter);
 app.use('/signout', signoutRouter);
 
 // catch 404 and forward to error handler

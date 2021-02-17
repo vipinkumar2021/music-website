@@ -1,0 +1,149 @@
+<%- include('dashboardheader') %>
+
+<div class="item item3 main main-dashboard-admin">
+  <div class="sidenav-dashboardadmin">
+    <ul>      
+      <li>
+        <a href="/dashboardadmin">Admin Dashboard</a>
+      </li>
+      <li>
+        <a href="/inbox">Inbox</a>
+      </li>
+      <li>
+        <a href="/outbox">Outbox</a>
+      </li>      
+      <li>
+        <a href="#" onclick="openSendMessageModal()">Start Sending Email</a>
+      </li>           
+      <li>
+        <a href="/adminstafflist">List of Admin Staff</a>
+      </li>      
+      <li>
+        <a href="/clientslist">List of Clients</a>
+      </li>
+      <li>
+        <a href="/createprofile">Create Profile</a>
+      </li>
+      <li>
+        <a href="/editprofile">Edit Profile</a>
+      </li>
+      <!--
+      <li>
+        <a href="/deleteprofile">Delete Profile</a>
+      </li>
+      -->
+      <li>
+        <a href="/uploadfile">Upload File</a>
+      </li>
+      <li>
+        <a href="/recyclebin">Recycle Bin</a>
+      </li>
+      <li>
+        <a href="/giveaccess">Give Access</a>
+      </li>
+    </ul>
+  </div>
+  
+    <div class="container dashboardadmin">
+      <% if(msg != ''){ %>
+        <h2 style="color: lightgreen;"><%= msg %> </h2>
+      <% } %>
+        <h1>Welcome to Admin Dashboard</h1>
+         
+        <% if(savedData != '') { %>
+        <h1><%= savedData.Firstname %> <%= savedData.Lastname %>    </h1>
+         
+        <div> 
+          <img src="./uploads/<%= savedData.Imagename %> " width="150px" height="200px"/>
+        </div>
+                      
+      <div class="container profile-details">
+        <div class="row">
+                  
+          
+         <div class="column col-left">
+          <ul>
+            <li>ID: <%= savedData._id %>  </li>
+            <li>First Name: <%= savedData.Firstname %> </li>
+            <li>Mobile Number: <%= savedData.Mobilenumber %></li>
+            <li>National ID: <%= savedData.Nationalid %></li>
+          </ul>
+         </div> 
+         <div class="column col-right">
+           <ul>
+            <li>Username: <%= savedData.Username%> </li>
+            <li>Last Name: <%= savedData.Lastname %></li>
+            <li>Email: <%= savedData.Email %></li>            
+           </ul>          
+         </div>
+         <% } %>
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+    
+
+    
+    
+      
+  <!-- Admin Staff Edit form Modal starts here-->
+  <div class="modal-parent-staff-edit-form">
+    <div class="modal-staff-edit-form">
+        <h1 style="text-align: center;">Edit Staff Details</h1>        
+        <form action="/dashboardadmin" method="post" role="form">
+         
+            
+            
+          <select>             
+            <option selected>Select Id</option>
+            <% if(staffid != '' && staffdata != '' ) { %> 
+              <% var i; %> 
+              <% for(i=0; i <= staffid.length; i++) { %> 
+                <option><%= staffid[i] %></option> 
+                
+            <% } %>  
+          </select>
+          <br/><br/>           
+                    
+            
+             
+
+          <label for="firstname">First Name</label><br/>
+          <input name="firstname" type="text" value="<%= staffdata[1].Firstname %> " /><br/><br/>
+          <label for="lastname">Last Name</label><br/>
+          <input name="lastname" type="text" value="<%= staffdata[1].Lastname %> " /><br/><br/>
+          <label for="usrname">Username</label><br/>
+          <input name="usrname" type="username" value="<%= staffdata[1].Username %> "  /><br/><br/>
+          <label for="mobilenumber">Mobile Number</label><br/>
+          <input name="mobilenumber" type="tel" value="<%= staffdata[1].Mobilenumber%> " /><br/><br/>
+          <label for="email">Email</label><br/>
+          <input name="email" type="email" value="<%= staffdata[1].Email %> " /><br/><br/>
+          <label for="nationalid">National Id</label><br/>
+          <input name="nationalid" type="nationalid" value="<%= staffdata[1].Nationalid %> " /><br/><br/>
+          <label for="password">Password</label><br/>
+          <input name="password" type="password" value="<%= staffdata[1].Password %> "  /><br/><br/>
+          <label for="cnfpassword">Confirm Password</label><br/>
+          <input name="cnfpassword" type="password" value="<%= staffdata[1].Password %> " /><br/><br/>              
+          <button type="submit">Edit Details</button><button type="button" onclick="closeModalStaffEditForm()">cancel</button><br/><br/>
+         
+        <%  } %>  
+        </form>
+        <span class="X-staff-edit-form" onclick="closeModalStaffEditForm()">&times;</span>
+    </div>
+  </div>
+   <!-- Admin Staff Edit form Modal ends here-->
+  
+    
+ 
+
+</div>
+<%- include('modaladmin') %> 
+<%- include('dashboardfooter') %>
+
+
+
+

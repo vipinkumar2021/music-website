@@ -1,4 +1,3 @@
-/* uncomment it later
 var express = require('express');
 var router = express.Router();
 
@@ -18,7 +17,6 @@ var nodemailer = require('nodemailer');
 var bcrypt = require('bcryptjs');
 
 /* GET home page. */
-/* uncomment it later
 router.get('/',  function(req, res, next) {
   var loginUserCustomer = localStorage.getItem('customerLoginUserName');
   var loginUserEmployee = localStorage.getItem('employeeLoginUserName');
@@ -167,7 +165,6 @@ function checkEmail(req, res, next) {
 }
 */
 //Require multer for file upload
-/* uncomment it later
 var multer = require('multer');
 //require path
 var path = require('path');
@@ -258,7 +255,6 @@ function checkUsername(req, res, next) {
  }
 */
 //Exactly Correct one so far
-/* uncomment it later
 router.post('/signupadmin', upload, function(req, res, next) {
   var firstname = req.body.firstname;
   var lastname = req.body.lastname;
@@ -389,7 +385,7 @@ router.post('/signupadmin', upload, function(req, res, next) {
 
                   });
                   /*next();*/ // return res.render('admin', {title: 'SaReGaMa Music Academy & GMP Studio', msg:'Mobile Number does not Already Registered in Customer Data' });
-/* uncomment it later
+
                 }
               });
             }
@@ -779,7 +775,6 @@ router.post('/signupadmin', upload, function(req, res, next) {
   //Admin Sign up sending OTP ends here Exactally Correct One with image upload
   
   //Get Sign Up Page
-  /* uncomment it later
   router.get('/signupadmin',  function(req, res, next) {
     var loginUserCustomer = localStorage.getItem('customerLoginUserName');
     var loginUserEmployee = localStorage.getItem('employeeLoginUserName');
@@ -845,16 +840,3 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 
 
 module.exports = router;
-uncomment it later */ 
-
-
-var express = require('express');
-var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('admin', { title: 'Music-Website', msg: '' });
-});
-
-module.exports = router;
-
