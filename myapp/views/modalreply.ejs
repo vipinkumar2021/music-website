@@ -1,0 +1,44 @@
+<!--reply Modal starts here from inbox--> 
+<div class="modal-parent-reply">
+    <div class="modal-reply">
+        <h1 style="text-align: center;">Reply Email</h1>        
+        <form action="inbox/reply" method="post" role="form">              
+                    
+          <label for="messageto">Message To</label>
+          <input name="messageto" type="email" value=""/>
+            
+          <label for="writemessage">Write Message</label><br/>
+          <textarea name="writemessage" type="text" placeholder="Enter Your Message here...">
+
+          </textarea><br/><br/>
+          <button type="submit">Reply</button><button type="button" onclick="closeReplyModal()">cancel</button><br/><br/>        
+           
+        </form>
+        <span class="X-reply" onclick="closeReplyModal()">&times;</span>
+    </div>
+  </div>
+  <!--reply Modal ends here from inbox-->
+
+  <!--reply Modal starts here from outbox--> 
+<div class="modal-parent-reply">
+  <div class="modal-reply">
+      <h1 style="text-align: center;">Reply Email</h1>        
+      <form action="outbox/replyfromoutbox" method="post" role="form">              
+                  
+        <label for="messageto">Message To</label>
+        <input name="messageto" type="email" value=""/>
+          
+        <label for="writemessage">Write Message</label><br/>
+        <textarea name="writemessage" type="text" placeholder="Enter Your Message here...">
+
+        </textarea><br/><br/>
+        <button type="submit">Reply</button><button type="button" onclick="closeReplyModal()">cancel</button><br/><br/>        
+         
+      </form>
+      <span class="X-reply" onclick="closeReplyModal()">&times;</span>
+  </div>
+</div>
+<!--reply Modal ends here from outbox-->
+
+
+
