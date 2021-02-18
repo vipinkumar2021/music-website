@@ -168,7 +168,7 @@ function checkEmail(req, res, next) {
 var multer = require('multer');
 //require path
 var path = require('path');
-router.use(express.static(path.join(__dirname, './public/uploads/')));
+router.use(express.static(path.join(__dirname, './public')));
 //Set Storage Engine for file to be stored
 const storage = multer.diskStorage({
   destination: './public/uploads/', 
