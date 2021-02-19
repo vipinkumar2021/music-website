@@ -3,10 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/',  function(req, res, next) {
-  var loginUserCustomer = localStorage.getItem('customerLoginUserName');
-  var loginUserEmployee = localStorage.getItem('employeeLoginUserName');
-  var loginUserAdmin = localStorage.getItem('adminLoginUserName');
-  
+  var loginUserCustomer = req.session.customerLoginUserName;//localStorage.getItem('customerLoginUserName');
+  var loginUserEmployee = req.session.employeeLoginUserName;//localStorage.getItem('employeeLoginUserName');
+  var loginUserAdmin = req.session.adminLoginUserName;//localStorage.getItem('adminLoginUserName');
+
   if(loginUserCustomer){
     res.redirect('/dashboardcustomer');
   } else if(loginUserEmployee) {
@@ -20,15 +20,24 @@ router.get('/',  function(req, res, next) {
 
 
 router.post("/", function(req, res, next) {
+  req.session.destroy(function(err) {
+    if(err) {
+      res.redirect('/');
+    } else {
+      res.render('signout', { title: 'frontendwebdeveloper', msg:'' });
+
+    }    
+  })
+  /*
   localStorage.removeItem('customerLoginTokenName');
   localStorage.removeItem('customerLoginUserName');
   localStorage.removeItem('employeeLoginTokenName');
   localStorage.removeItem('employeeLoginUserName');
   localStorage.removeItem('adminLoginTokenName');
   localStorage.removeItem('adminLoginUserName');
+  */
   //res.redirect('/');
-  res.render('signout', { title: 'frontendwebdeveloper', msg:'' });
-});
+  });
 
 
 module.exports = router;

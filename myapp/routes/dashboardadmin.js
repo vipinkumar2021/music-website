@@ -42,14 +42,17 @@ function checkFileType(file, cb) {
 var adminModule = require('../modules/adminschema');
 var uploadModel = require('../modules/uploadschema');
 //jwt for creating a token
-var jwt = require('jsonwebtoken');
+//var jwt = require('jsonwebtoken');
 // require local storage 
+/*
 if (typeof localStorage === "undefined" || localStorage === null) {
   const LocalStorage = require('node-localstorage').LocalStorage;
   localStorage = new LocalStorage('./scratch');
 }
+*/
 //middleware
 //Check LoginUser
+/*
 function checkLoginUser(req, res, next) {
   var getLoginToken = localStorage.getItem('adminLoginTokenName');
   try{
@@ -59,13 +62,14 @@ function checkLoginUser(req, res, next) {
   }
   next();
 }
+*/
 /* GET home page. */
 /* GET home page. */
 router.get('/',  function(req, res, next) {
   var loginUser = {
-    loginUserCustomer: localStorage.getItem('customerLoginUserName'),
-    loginUserEmployee: localStorage.getItem('employeeLoginUserName'),
-    loginUserAdmin: localStorage.getItem('adminLoginUserName')
+    loginUserCustomer: req.session.customerLoginUserName,//localStorage.getItem('customerLoginUserName'),
+    loginUserEmployee: req.session.employeeLoginUserName,//localStorage.getItem('employeeLoginUserName'),
+    loginUserAdmin: req.session.adminLoginUserName//localStorage.getItem('adminLoginUserName')
 
   };
   if(loginUser.loginUserCustomer) {
@@ -89,7 +93,7 @@ router.get('/',  function(req, res, next) {
 });
 /*
 router.get('/', checkLoginUser, function(req, res, next) {
-    var loginUserAdmin = localStorage.getItem('adminLoginUserName');
+    var loginUserAdmin = req.session.adminLoginUserName; //localStorage.getItem('adminLoginUserName');
       
     var getSavedData = adminModule.findOne({Username: loginUserAdmin});
       getSavedData.exec((err, savedData)=> {
@@ -104,9 +108,9 @@ router.get('/', checkLoginUser, function(req, res, next) {
 
 
   // Image or File Upload to Gallery
-  router.post('/upload', upload, checkLoginUser, function(req, res, next) {
-    var loginUser = localStorage.getItem('loginUserName');
-               
+  router.post('/upload', upload, /*checkLoginUser,*/ function(req, res, next) {
+    //var loginUser = localStorage.getItem('loginUserName');
+    var loginUser = req.session.adminLoginUserName;
               var uploadFileName = req.file.filename;
               var uploadDetails = new uploadModel({
                 Filename: uploadFileName
@@ -127,7 +131,8 @@ router.get('/', checkLoginUser, function(req, res, next) {
               
 // Send Email from website to any email id starts here
 router.post('/Send', function(req, res, next) {
-  var loginUser = localStorage.getItem('adminLoginUserName')
+  //var loginUser = localStorage.getItem('adminLoginUserName')
+  var loginUser = req.session.adminLoginUserName;
   //var loginUser = localStorage.getItem('loginUserName');
   var messageto = req.body.messageto;  
   var output = `

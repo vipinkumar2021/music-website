@@ -3,12 +3,14 @@ var router = express.Router();
 
 
 //jwt for creating a token
-var jwt = require('jsonwebtoken');
+//var jwt = require('jsonwebtoken');
 // require local storage 
+/*
 if (typeof localStorage === "undefined" || localStorage === null) {
   const LocalStorage = require('node-localstorage').LocalStorage;
   localStorage = new LocalStorage('./scratch');
 }
+*/
 //middleware
 //Check LoginUser
 /*
@@ -25,9 +27,9 @@ function checkLoginUser(req, res, next) {
 /* GET home page. */ //Exactally Correct One
 router.get('/',  function(req, res, next) {
   var loginUser = {
-    loginUserCustomer: localStorage.getItem('customerLoginUserName'),
-    loginUserEmployee: localStorage.getItem('employeeLoginUserName'),
-    loginUserAdmin: localStorage.getItem('adminLoginUserName')
+    loginUserCustomer: req.session.customerLoginUserName,//localStorage.getItem('customerLoginUserName'),
+    loginUserEmployee: req.session.employeeLoginUserName,//localStorage.getItem('employeeLoginUserName'),
+    loginUserAdmin: req.session.adminLoginUserName//localStorage.getItem('adminLoginUserName')
 
   };
   if(loginUser.loginUserCustomer) {

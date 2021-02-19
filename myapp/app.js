@@ -3,7 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+//import session Vipin...
+var session = require('express-session')
 //Requiring bodyparser Vipin
 var bodyParser = require('body-parser');
 
@@ -39,6 +40,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// Vipin
+// require dot env
+require('dotenv').config();
+app.use(session({
+  secret: process.env.EXPRESS_SESSION_SECRET_KEY,
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

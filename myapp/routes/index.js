@@ -28,15 +28,17 @@ router.get('/', function(req, res, next) {
 // uncomment it later
 
 router.get('/',  function(req, res, next) {
-  var loginUserCustomer = localStorage.getItem('customerLoginUserName');
-  var loginUserEmployee = localStorage.getItem('employeeLoginUserName');
-  var loginUserAdmin = localStorage.getItem('adminLoginUserName');
-  
-  if(loginUserCustomer){
+  /*
+  var loginUserCustomer = req.session.customerLoginUserName;//localStorage.getItem('customerLoginUserName');
+  var loginUserEmployee = req.session.employeeLoginUserName;//localStorage.getItem('employeeLoginUserName');
+  var loginUserAdmin = req.session.adminLoginUserName;//localStorage.getItem('adminLoginUserName');
+*/
+
+  if(req.session.customerLoginUserName){
     res.redirect('/dashboardcustomer');
-  } else if(loginUserEmployee) {
+  } else if(req.session.employeeLoginUserName) {
     res.redirect('/dashboardemployees');
-  } else if(loginUserAdmin) {
+  } else if(req.session.adminLoginUserName) {
     res.redirect('/dashboardadmin');
   } else {
     res.render('index', { title: 'SaReGaMa Music Academy & GMP Studio', msg:''});
@@ -271,12 +273,15 @@ router.post('/accountactivatedcustomer', function(req, res, next) {
 //jwt for creating a token
 var jwt = require('jsonwebtoken');
 // require local storage 
+/* uncomment it later if needed
 if (typeof localStorage === "undefined" || localStorage === null) {
   const LocalStorage = require('node-localstorage').LocalStorage;
   localStorage = new LocalStorage('./scratch');
 }
+*/
 
 //Sign in
+/* uncomment it later
 router.post('/signin', function(req, res, next) {
 
   var username = req.body.uname;
@@ -298,7 +303,12 @@ router.post('/signin', function(req, res, next) {
         if(customerData.Onetimepassword != null) {
           res.render('forgotpassword', { title: 'frontendwebdeveloper', msg:'Please reset your password for seurity purposes, otherwise you will not be able to sign in' });
         } else { 
-          var customerToken = jwt.sign({userID: getUserIDFromCustomersData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY /*, {expiresIn: 600 /*86400 = 24 hours}*/);
+          var customerToken = jwt.sign({userID: getUserIDFromCustomersData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY /*, {expiresIn: 600 /*86400 = 24 hours}*/
+            /* uncomment it later
+
+            );
+        /* uncomment it later  
+          
           localStorage.setItem('customerLoginTokenName', customerToken);
           localStorage.setItem('customerLoginUserName', username);
           res.redirect('/dashboardcustomer');
@@ -322,7 +332,12 @@ router.post('/signin', function(req, res, next) {
           if(employeeData.Onetimepassword != null) {
             res.render('forgotpassword', { title: 'frontendwebdeveloper', msg:'Please reset your password for seurity purposes, otherwise you will not be able to sign in' });
           } else { 
-            var employeeToken = jwt.sign({userID: getUserIDFromEmployeeData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY /*, {expiresIn: 600 /*86400 = 24 hours}*/);
+            var employeeToken = jwt.sign({userID: getUserIDFromEmployeeData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY /*, {expiresIn: 600 /*86400 = 24 hours}*/
+              /* uncomment it later
+              );
+           
+            /* uncomment it later
+           
             localStorage.setItem('employeeLoginTokenName', employeeToken);
             localStorage.setItem('employeeLoginUserName', username);
             res.redirect('/dashboardemployees');
@@ -332,7 +347,9 @@ router.post('/signin', function(req, res, next) {
         }  
      
 
-        } /*if(employeeData != null) { enda*/ else if(employeeData == null) {
+        } /*if(employeeData != null) { enda*/
+          /* uncomment it later
+          else if(employeeData == null) {
           checkUserNameInAdminData.exec((err, adminData) => {
             if(err) throw err;
 
@@ -346,7 +363,12 @@ router.post('/signin', function(req, res, next) {
           if(adminData.Onetimepassword != null) {
             res.render('forgotpassword', { title: 'frontendwebdeveloper', msg:'Please reset your password for seurity purposes, otherwise you will not be able to sign in' });
           } else { 
-            var adminToken = jwt.sign({userID: getUserIDFromAdminData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY /*, {expiresIn: 600 /*86400 = 24 hours}*/);
+            var adminToken = jwt.sign({userID: getUserIDFromAdminData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY /*, {expiresIn: 600 /*86400 = 24 hours}*/
+              /* uncomment it later
+              );
+            
+            /* uncomment it later
+
             localStorage.setItem('adminLoginTokenName', adminToken);
             localStorage.setItem('adminLoginUserName', username);
             res.redirect('/dashboardadmin');
@@ -355,7 +377,9 @@ router.post('/signin', function(req, res, next) {
           res.render('index', { title: 'frontendwebdeveloper', msg:'Invalid Password' });
         }  
 
-            }/* if(adminData != null) { */ else{
+            }/* if(adminData != null) { */
+              /* uncomment it later
+              else{
               res.render('index', { title: 'frontendwebdeveloper', msg:'Invalid Username' });
             }
 
@@ -368,8 +392,145 @@ router.post('/signin', function(req, res, next) {
 
   });
 });
+ 
+uncomment it later */
       
+
+
+
+
+//Sign in
+/*
+function authenticateCustomerToken(req, res, next ) {
+ const authHeader = req.headers['authorization']
+  //Bearer TOKEN 
+  const token = authHeader && authHeader.split('')[1]
+  if(token == null) {
+    return res.render('index', { title: 'frontendwebdeveloper', msg:'No Access to Sign in Token, try again' });
+
+  } else {
+    jwt.verify(token, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY, (err, {userID: getUserIDFromCustomersData}) => {
+      if(err) throw
+    })
+  }
+  
+}
+*/
+router.post('/signin', function(req, res, next) {
+
+  var username = req.body.uname;
+  var password = req.body.password;
+  var checkUserNameInCustomerData = customerModel.findOne({Username: username});
+  var checkUserNameInEmployeesData = employeesModel.findOne({Username: username});
+  var checkUserNameInAdminData = adminModule.findOne({Username: username});
+
+  checkUserNameInCustomerData.exec((err, customerData) => {
+    if(err) throw err;
+
+    if(customerData != null) {
       
+      //Get Password from database
+      var getPasswordFromCustomersData = customerData.Password; 
+      //Get User Id from database to use in jwt
+      var getUserIDFromCustomersData = customerData._id;
+      if(bcrypt.compareSync(password, getPasswordFromCustomersData)) {
+        if(customerData.Onetimepassword != null) {
+          res.render('forgotpassword', { title: 'frontendwebdeveloper', msg:'Please reset your password for seurity purposes, otherwise you will not be able to sign in' });
+        } else { 
+          var customerToken = jwt.sign({userID: getUserIDFromCustomersData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY /*, {expiresIn: 600 /*86400 = 24 hours}*/            
+
+            );
+        
+          
+          // localStorage.setItem('customerLoginTokenName', customerToken);
+          // localStorage.setItem('customerLoginUserName', username);
+          //using session
+          req.session.customerLoginUserName = username;
+          //res.render('dashboardcustomer', {title: 'frontendwebdeveloper', msg: '',customerToken: customerToken} )
+          res.redirect('/dashboardcustomer');
+        }
+      } else {
+        res.render('index', { title: 'frontendwebdeveloper', msg:'Invalid Password' });
+      }  
+      
+    } else if(customerData == null) {
+
+      checkUserNameInEmployeesData.exec((err, employeeData ) => {
+        if(err) throw err;
+        if(employeeData != null) {
+
+          //Get Password from database
+        var getPasswordFromEmployeeData = employeeData.Password; 
+        //Get User Id from database to use in jwt
+        var getUserIDFromEmployeeData = employeeData._id;
+        
+        if(bcrypt.compareSync(password, getPasswordFromEmployeeData)) {
+          if(employeeData.Onetimepassword != null) {
+            res.render('forgotpassword', { title: 'frontendwebdeveloper', msg:'Please reset your password for seurity purposes, otherwise you will not be able to sign in' });
+          } else { 
+            var employeeToken = jwt.sign({userID: getUserIDFromEmployeeData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY /*, {expiresIn: 600 /*86400 = 24 hours}*/
+              
+              );
+           
+            
+           
+            // localStorage.setItem('employeeLoginTokenName', employeeToken);
+            // localStorage.setItem('employeeLoginUserName', username);
+            req.session.employeeLoginUserName = username;
+            res.redirect('/dashboardemployees');
+          }
+        } else {
+          res.render('index', { title: 'frontendwebdeveloper', msg:'Invalid Password' });
+        }  
+     
+
+        } /*if(employeeData != null) { enda*/
+          
+          else if(employeeData == null) {
+          checkUserNameInAdminData.exec((err, adminData) => {
+            if(err) throw err;
+
+            if(adminData != null) {
+              //Get Password from database
+        var getPasswordFromAdminData = adminData.Password; 
+        //Get User Id from database to use in jwt
+        var getUserIDFromAdminData = adminData._id;
+
+        if(bcrypt.compareSync(password, getPasswordFromAdminData)) {
+          if(adminData.Onetimepassword != null) {
+            res.render('forgotpassword', { title: 'frontendwebdeveloper', msg:'Please reset your password for seurity purposes, otherwise you will not be able to sign in' });
+          } else { 
+            var adminToken = jwt.sign({userID: getUserIDFromAdminData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY /*, {expiresIn: 600 /*86400 = 24 hours}*/
+              
+              );
+            
+            
+
+            // localStorage.setItem('adminLoginTokenName', adminToken);
+            // localStorage.setItem('adminLoginUserName', username);
+            req.session.adminLoginUserName = username;
+            res.redirect('/dashboardadmin');
+          }
+        } else {
+          res.render('index', { title: 'frontendwebdeveloper', msg:'Invalid Password' });
+        }  
+
+            }/* if(adminData != null) { */
+              
+              else{
+              res.render('index', { title: 'frontendwebdeveloper', msg:'Invalid Username' });
+            }
+
+
+          });
+        }
+
+      });
+    } //else if(customerData == null) {ends
+
+  });
+});
+ 
 
 
 module.exports = router;

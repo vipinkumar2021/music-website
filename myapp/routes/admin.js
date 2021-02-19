@@ -18,9 +18,9 @@ var bcrypt = require('bcryptjs');
 
 /* GET home page. */
 router.get('/',  function(req, res, next) {
-  var loginUserCustomer = localStorage.getItem('customerLoginUserName');
-  var loginUserEmployee = localStorage.getItem('employeeLoginUserName');
-  var loginUserAdmin = localStorage.getItem('adminLoginUserName');
+  var loginUserCustomer = req.session.customerLoginUserName;//localStorage.getItem('customerLoginUserName');
+  var loginUserEmployee = req.session.employeeLoginUserName//localStorage.getItem('employeeLoginUserName');
+  var loginUserAdmin = req.session.adminLoginUserName//localStorage.getItem('adminLoginUserName');
   
   if(loginUserCustomer){
     res.redirect('/dashboardcustomer');
@@ -776,9 +776,9 @@ router.post('/signupadmin', upload, function(req, res, next) {
   
   //Get Sign Up Page
   router.get('/signupadmin',  function(req, res, next) {
-    var loginUserCustomer = localStorage.getItem('customerLoginUserName');
-    var loginUserEmployee = localStorage.getItem('employeeLoginUserName');
-    var loginUserAdmin = localStorage.getItem('adminLoginUserName');
+    var loginUserCustomer = req.session.customerLoginUserName;//localStorage.getItem('customerLoginUserName');
+    var loginUserEmployee = req.session.employeeLoginUserName;//localStorage.getItem('employeeLoginUserName');
+    var loginUserAdmin = req.session.adminLoginUserName;//localStorage.getItem('adminLoginUserName');
     
     if(loginUserCustomer){
       res.redirect('/dashboardcustomer');
@@ -819,12 +819,13 @@ router.post('/accountactivatedadmin', function(req, res, next) {
 // Sign up Account Activation with OTP ends here
 
 //jwt for creating a token
-var jwt = require('jsonwebtoken');
+//var jwt = require('jsonwebtoken');
 // require local storage 
-if (typeof localStorage === "undefined" || localStorage === null) {
+/*if (typeof localStorage === "undefined" || localStorage === null) {
   const LocalStorage = require('node-localstorage').LocalStorage;
   localStorage = new LocalStorage('./scratch');
 }
+*/
 
 
 

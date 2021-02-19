@@ -31,11 +31,11 @@ router.post('/', function(req, res, next) {
 
            
       var loginUser = {
-        loginUserCustomer: localStorage.getItem('customerLoginUserName'),
-        loginUserEmployee: localStorage.getItem('employeeLoginUserName'),
-        loginUserAdmin: localStorage.getItem('adminLoginUserName')
-    
-      };
+    loginUserCustomer: req.session.customerLoginUserName,//localStorage.getItem('customerLoginUserName'),
+    loginUserEmployee: req.session.employeeLoginUserName,//localStorage.getItem('employeeLoginUserName'),
+    loginUserAdmin: req.session.adminLoginUserName//localStorage.getItem('adminLoginUserName')
+
+  };
       
       if(loginUser.loginUserCustomer) {
         res.render('dashboardcustomer', { title: 'SaReGaMa Music Academy & GMP Studio', msg:'Message Submitted Successfully, You will be contacted soon. Thanks!', loginUser: loginUser.loginUserCustomer });

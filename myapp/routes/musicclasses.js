@@ -4,9 +4,9 @@ var router = express.Router();
 /* GET home page. */
 /* uncomment it later
 router.get('/',  function(req, res, next) {
-  var loginUserCustomer = localStorage.getItem('customerLoginUserName');
-  var loginUserEmployee = localStorage.getItem('employeeLoginUserName');
-  var loginUserAdmin = localStorage.getItem('adminLoginUserName');
+  var loginUserCustomer = req.session.customerLoginUserName;//localStorage.getItem('customerLoginUserName');
+  var loginUserEmployee = req.session.employeeLoginUserName;//localStorage.getItem('employeeLoginUserName');
+  var loginUserAdmin = req.session.adminLoginUserName;//localStorage.getItem('adminLoginUserName');
   
   if(loginUserCustomer){
     res.redirect('/dashboardcustomer');
