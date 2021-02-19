@@ -114,6 +114,9 @@ body {
 #dashboard-logged-in-dropdown {
   padding-right: 20px;
 }
+#dashboard-logged-in-dropdown:hover {
+  display: block;
+}
 
 @media screen and (max-width: 1020px) {
   .header .headernav ul:not(:last-child) {
