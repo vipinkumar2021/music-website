@@ -298,7 +298,7 @@ router.post('/signin', function(req, res, next) {
         if(customerData.Onetimepassword != null) {
           res.render('forgotpassword', { title: 'frontendwebdeveloper', msg:'Please reset your password for seurity purposes, otherwise you will not be able to sign in' });
         } else { 
-          var customerToken = jwt.sign({userID: getUserIDFromCustomersData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY);
+          var customerToken = jwt.sign({userID: getUserIDFromCustomersData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY /*, {expiresIn: 600 /*86400 = 24 hours}*/);
           localStorage.setItem('customerLoginTokenName', customerToken);
           localStorage.setItem('customerLoginUserName', username);
           res.redirect('/dashboardcustomer');
@@ -322,7 +322,7 @@ router.post('/signin', function(req, res, next) {
           if(employeeData.Onetimepassword != null) {
             res.render('forgotpassword', { title: 'frontendwebdeveloper', msg:'Please reset your password for seurity purposes, otherwise you will not be able to sign in' });
           } else { 
-            var employeeToken = jwt.sign({userID: getUserIDFromEmployeeData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY);
+            var employeeToken = jwt.sign({userID: getUserIDFromEmployeeData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY /*, {expiresIn: 600 /*86400 = 24 hours}*/);
             localStorage.setItem('employeeLoginTokenName', employeeToken);
             localStorage.setItem('employeeLoginUserName', username);
             res.redirect('/dashboardemployees');
@@ -346,7 +346,7 @@ router.post('/signin', function(req, res, next) {
           if(adminData.Onetimepassword != null) {
             res.render('forgotpassword', { title: 'frontendwebdeveloper', msg:'Please reset your password for seurity purposes, otherwise you will not be able to sign in' });
           } else { 
-            var adminToken = jwt.sign({userID: getUserIDFromAdminData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY);
+            var adminToken = jwt.sign({userID: getUserIDFromAdminData}, process.env.CUSTOMER_LOGIN_TOKEN_ACCESS_KEY /*, {expiresIn: 600 /*86400 = 24 hours}*/);
             localStorage.setItem('adminLoginTokenName', adminToken);
             localStorage.setItem('adminLoginUserName', username);
             res.redirect('/dashboardadmin');
