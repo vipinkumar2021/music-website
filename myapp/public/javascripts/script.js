@@ -738,3 +738,11 @@ function closeConfirmBeforeDeletingMsgModal() {
     //modalParentConfirmBeforeDelete.style.display = 'none';
 }
 //Confirm before deleting msg modal ends here
+
+// dashboard-logged-in-dropdown (onclick display block)
+var dashboardLoggedInAsDropdown = document.getElementById('dashboard-logged-in-dropdown');
+dashboardLoggedInAsDropdown.addEventListener('click', showDropdown);
+
+function showDropdown() {
+    dashboardLoggedInAsDropdown.style.display = 'block';
+}

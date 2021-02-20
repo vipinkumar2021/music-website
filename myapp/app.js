@@ -11,23 +11,55 @@ var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
 var galleryRouter = require('./routes/gallery');
+var dashboardgalleryRouter = require('./routes/dashboardgallery');
+
 var servicesRouter = require('./routes/services');
+var dashboardservicesRouter = require('./routes/dashboardservices');
+
 var contactusRouter = require('./routes/contactus');
+
 var adminRouter = require('./routes/admin');
-var musicclassesRouter = require('./routes/musicclasses');
-var audiorecordyoursongRouter = require('./routes/audiorecordyoursong');
-var videoshootyoursongRouter = require('./routes/videoshootyoursong');
-var bookliveconcertRouter = require('./routes/bookliveconcert');
-var vocalclassesRouter = require('./routes/vocalclasses');
-var guitarclassesRouter = require('./routes/guitarclasses');
-var tablaclassesRouter = require('./routes/tablaclasses');
-var pianoclassesRouter = require('./routes/pianoclasses');
-var harmoniumclassesRouter = require('./routes/harmoniumclasses');
-var musicproductionRouter = require('./routes/musicproduction');
-var dashboardcustomerRouter = require('./routes/dashboardcustomer');
 var dashboardadminRouter = require('./routes/dashboardadmin');
+
+var musicclassesRouter = require('./routes/musicclasses');
+var dashboardmusicclassesRouter = require('./routes/dashboardmusicclasses');
+
+var audiorecordyoursongRouter = require('./routes/audiorecordyoursong');
+var dashboardaudiorecordyoursongRouter = require('./routes/dashboardaudiorecordyoursong');
+
+var videoshootyoursongRouter = require('./routes/videoshootyoursong');
+var dashboardvideoshootyoursongRouter = require('./routes/dashboardvideoshootyoursong');
+
+var bookliveconcertRouter = require('./routes/bookliveconcert');
+var dashboardbookliveconcertRouter = require('./routes/dashboardbookliveconcert');
+
+var vocalclassesRouter = require('./routes/vocalclasses');
+var dashboardvocalclassesRouter = require('./routes/dashboardvocalclasses');
+
+var guitarclassesRouter = require('./routes/guitarclasses');
+var dashboardguitarclassesRouter = require('./routes/dashboardguitarclasses');
+
+var tablaclassesRouter = require('./routes/tablaclasses');
+var dashboardtablaclassesRouter = require('./routes/dashboardtablaclasses');
+
+var pianoclassesRouter = require('./routes/pianoclasses');
+var dashboardpianoclassesRouter = require('./routes/dashboardpianoclasses');
+
+var harmoniumclassesRouter = require('./routes/harmoniumclasses');
+var dashboardharmoniumclassesRouter = require('./routes/dashboardharmoniumclasses');
+
+var musicproductionRouter = require('./routes/musicproduction');
+var dashboardmusicproductionRouter = require('./routes/dashboardmusicproduction');
+
+var dashboardcustomerRouter = require('./routes/dashboardcustomer');
+var dashboardwebsiteRouter = require('./routes/dashboardwebsite');
+
+var dashboardcartRouter = require('./routes/dashboardcart');
+
 var signoutRouter = require('./routes/signout');
+
 
 var app = express();
 
@@ -51,23 +83,55 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 app.use('/gallery', galleryRouter);
+app.use('/dashboardgallery', dashboardgalleryRouter);
+
 app.use('/services', servicesRouter);
+app.use('/dashboardservices', dashboardservicesRouter);
+
 app.use('/contactus', contactusRouter);
+
 app.use('/admin', adminRouter);
-app.use('/musicclasses', musicclassesRouter);
-app.use('/audiorecordyoursong', audiorecordyoursongRouter);
-app.use('/videoshootyoursong', videoshootyoursongRouter);
-app.use('/bookliveconcert', bookliveconcertRouter);
-app.use('/vocalclasses', vocalclassesRouter);
-app.use('/guitarclasses', guitarclassesRouter);
-app.use('/tablaclasses', tablaclassesRouter);
-app.use('/pianoclasses', pianoclassesRouter);
-app.use('/harmoniumclasses', harmoniumclassesRouter);
-app.use('/musicproduction', musicproductionRouter);
-app.use('/dashboardcustomer', dashboardcustomerRouter);
 app.use('/dashboardadmin', dashboardadminRouter);
+
+app.use('/musicclasses', musicclassesRouter);
+app.use('/dashboardmusicclasses', dashboardmusicclassesRouter);
+
+app.use('/audiorecordyoursong', audiorecordyoursongRouter);
+app.use('/dashboardaudiorecordyoursong', dashboardaudiorecordyoursongRouter);
+
+app.use('/videoshootyoursong', videoshootyoursongRouter);
+app.use('/dashboardvideoshootyoursong', dashboardvideoshootyoursongRouter);
+
+app.use('/bookliveconcert', bookliveconcertRouter);
+app.use('/dashboardbookliveconcert', dashboardbookliveconcertRouter);
+
+app.use('/vocalclasses', vocalclassesRouter);
+app.use('/dashboardvocalclasses', dashboardvocalclassesRouter);
+
+app.use('/guitarclasses', guitarclassesRouter);
+app.use('/dashboardguitarclasses', dashboardguitarclassesRouter);
+
+app.use('/tablaclasses', tablaclassesRouter);
+app.use('/dashboardtablaclasses', dashboardtablaclassesRouter);
+
+app.use('/pianoclasses', pianoclassesRouter);
+app.use('/dashboardpianoclasses', dashboardpianoclassesRouter);
+
+app.use('/harmoniumclasses', harmoniumclassesRouter);
+app.use('/dashboardharmoniumclasses', dashboardharmoniumclassesRouter);
+
+app.use('/musicproduction', musicproductionRouter);
+app.use('/dashboardmusicproduction', dashboardmusicproductionRouter);
+
+app.use('/dashboardcustomer', dashboardcustomerRouter);
+app.use('/dashboardwebsite', dashboardwebsiteRouter);
+
+app.use('/dashboardcart', dashboardcartRouter);
+
 app.use('/signout', signoutRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
