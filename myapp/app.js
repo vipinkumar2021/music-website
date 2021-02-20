@@ -22,6 +22,7 @@ var contactusRouter = require('./routes/contactus');
 
 var adminRouter = require('./routes/admin');
 var dashboardadminRouter = require('./routes/dashboardadmin');
+var inboxRouter = require('./routes/inbox');
 
 var musicclassesRouter = require('./routes/musicclasses');
 var dashboardmusicclassesRouter = require('./routes/dashboardmusicclasses');
@@ -94,6 +95,7 @@ app.use('/contactus', contactusRouter);
 
 app.use('/admin', adminRouter);
 app.use('/dashboardadmin', dashboardadminRouter);
+app.use('/inbox', inboxRouter);
 
 app.use('/musicclasses', musicclassesRouter);
 app.use('/dashboardmusicclasses', dashboardmusicclassesRouter);

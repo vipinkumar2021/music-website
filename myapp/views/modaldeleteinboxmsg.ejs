@@ -1,0 +1,35 @@
+       <!--Inbox(clientsmessages) Delete Confirmation Modal starts here-->
+   
+ 
+       <% if(clientsMessagesData.length > 0) { %>
+        <% clientsMessagesData.forEach((row) => { %>
+
+
+       <div class="modal-parent-confirmation-before-deleting-msg">
+  
+        <div class="modal-confirmation-before-deleting-msg">
+            <h1>Are you sure, you want to delete this?</h1>
+            <br/><br/> 
+      
+            
+                               
+             <a href="../delete/deleteinboxmsg/<%= row._id %> " style="list-style: none;" ><%= row._id %> Yes</a>
+             
+                
+            
+      
+            
+             <button type="button" onclick="closeConfirmBeforeDeletingMsgModal()">No</button><br/><br/>
+                                                                        
+            <span class="X-confirmation-before-deleting-msg" onclick="closeConfirmBeforeDeletingMsgModal()">&times;</span>
+        </div>
+        
+      </div>
+      
+      <%  }) } %> 
+      
+      
+      
+      
+      <!--Inbox(clientsmessages) Delete Confirmation Modal ends here-->
+      

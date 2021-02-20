@@ -1,0 +1,119 @@
+<%- include('dashboardheader') %>
+
+<div class="item item3 main">
+
+    <div class="sidenav-dashboardadmin">
+      <ul>      
+        <li>
+          <a href="/dashboardadmin">Admin Dashboard</a>
+        </li>
+        <li>
+          <a href="/inbox">Inbox</a>
+        </li>
+        <li>
+          <a href="/outbox">Outbox</a>
+        </li>      
+        <li>
+          <a href="#" onclick="openSendMessageModal()">Start Sending Email</a>
+        </li>           
+        <li>
+          <a href="/adminstafflist">List of Admin Staff</a>
+        </li>      
+        <li>
+          <a href="/clientslist">List of Clients</a>
+        </li>
+        <li>
+          <a href="/createprofile">Create Profile</a>
+        </li>
+        <li>
+          <a href="/editprofile">Edit Profile</a>
+        </li>
+        <!--
+        <li>
+          <a href="/deleteprofile">Delete Profile</a>
+        </li>
+        -->
+        <li>
+          <a href="/uploadfile">Upload File</a>
+        </li>
+        <li>
+          <a href="/recyclebin">Recycle Bin</a>
+        </li>
+        <li>
+          <a href="/giveaccess">Give Access</a>
+        </li>
+      </ul>
+      </div>
+
+    <div class="container inbox">
+        <% if(msg != ''){ %>
+            <h1 style="color: lightgreen;"><%= msg %></h1>
+        <% } %>
+
+        <h1>Welcome to Inbox</h1> 
+        <hr/>
+        <% if(clientsMessagesData.length > 0) { %>
+          <% clientsMessagesData.forEach((row) => { %>
+
+        <div class="inbox-msg-box">
+            
+              <ul>                
+                <li class="messageid">
+                  Message Id: <%= row._id %> 
+                </li>
+                <li>
+                  Dated: <%= row.Date %> 
+                </li>
+                <br/>
+                <li>
+                  First Name: <%= row.Firstname %> 
+                </li>
+                <li>
+                  Last Name: <%= row.Lastname %> 
+                </li>
+                <li>
+                  Mobile Number: <%= row.Mobilenumber %> 
+                </li>
+                <li>
+                  Email: <a href="#" class="currentEmail"><%= row.Email %></a> 
+                </li>
+                <li>
+                  Message: <%= row.WriteMessage %> 
+                </li>
+                <br/> 
+                <li>
+                  <a href="#" onclick="openReplyModal()">Reply</a><a href="#" onclick="openForwardMsgModal()">Forward Message</a><a href="../delete/deleteinboxmsg/<%= row._id %>" onclick="return confirm('Are you sure, you want to delete this message?');">Delete This Message</a>
+                </li>              
+              </ul>
+                           
+            </div>
+
+      
+            
+            <%  }) }  %>
+
+
+
+           
+                 
+         
+           
+                       
+    </div>      
+
+
+  
+    
+ 
+
+</div>
+<%- include('modal') %>
+  <%- include('modaladmin') %> 
+  <%- include('modalreply') %>
+  <%- include('modaldeleteinboxmsg') %> 
+  <%- include('modalforward') %>
+  <%- include('dashboardfooter') %>
+
+
+
+

@@ -1,0 +1,42 @@
+<!--Forward Modal starts here from inbox--> 
+<div class="modal-parent-forward-msg">
+    <div class="modal-forward-msg">
+        <h1 style="text-align: center;">Forward Email</h1>        
+        <form action="inbox/forwardemail" method="post" role="form">              
+                    
+          <label for="messageto">Message To</label><br/>
+          <input name="messageto" type="email" value=""/><br/>
+            
+          <label for="writemessage">Message</label><br/>
+          <textarea name="writemessage" type="text" placeholder="Enter Your Message here...">
+            
+          </textarea><br/><br/>
+          <button type="submit">Forward Email</button><button type="button" onclick="closeForwardMsgModal()">cancel</button><br/><br/>        
+           
+        </form>
+        <span class="X-reply" onclick="closeForwardMsgModal()">&times;</span>
+    </div>
+  </div>
+  <!--Forward Modal ends here from inbox-->
+
+
+  <!--Forward Modal starts here from outbox--> 
+<div class="modal-parent-forward-msg">
+    <div class="modal-forward-msg">
+        <h1 style="text-align: center;">Forward Email</h1>        
+        <form action="outbox/forwardemail" method="post" role="form">              
+                    
+          <label for="messageto">Message To</label><br/>
+          <input name="messageto" type="email" value=""/><br/>
+            
+          <label for="writemessage">Message</label><br/>
+          <textarea name="writemessage" type="text" placeholder="Enter Your Message here...">
+            
+          </textarea><br/><br/>
+          <button type="submit">Forward Email</button><button type="button" onclick="closeForwardMsgModal()">cancel</button><br/><br/>        
+           
+        </form>
+        <span class="X-reply" onclick="closeForwardMsgModal()">&times;</span>
+    </div>
+  </div>
+  <!--Forward Modal ends here from outbox-->
