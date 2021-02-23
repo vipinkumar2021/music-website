@@ -11,7 +11,8 @@ require('dotenv').config();
 var crypto = require('crypto');
 //nodemailer for sending emails from website to clients
 var nodemailer = require('nodemailer');
-
+// new change...
+var smtpTransport = require('nodemailer-smtp-transport');
 //encrypt passwords using bcrypt
 var bcrypt = require('bcryptjs');
 
@@ -197,13 +198,14 @@ router.post('/signupcustomer', checkUsername, checkMobileNumber, checkEmail,   f
     <h3>Hi, Your One Time Password for Account Activation is ${Onetimepassword}</h3>
     <p>Please Enter the One Time Password in the opened link and press Activate Account</p>   
 `;
-var transporter = nodemailer.createTransport({ 
+var transporter = nodemailer.createTransport(smtpTransport({ 
   service: 'gmail',
+  host: 'smtp.gmail.com',
   auth: {    
     user: process.env.NODEMAILEMAILUSER,
     pass: process.env.NODEMAILEMAILPASSWORD    
   }
-});
+}));
 var mailOption = {
   from: 'resetpa7@gmail.com',
   to: email, //or use req.body.email
