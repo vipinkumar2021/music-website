@@ -1,0 +1,105 @@
+<%- include('dashboardheader') %>
+
+<div class="item item3 main">
+
+    <div class="sidenav-dashboardadmin">
+      <ul>      
+        <li>
+          <a href="/dashboardadmin">Admin Dashboard</a>
+        </li>
+        <li>
+          <a href="/inbox">Inbox</a>
+        </li>
+        <li>
+          <a href="/outbox">Outbox</a>
+        </li>      
+        <li>
+          <a href="#" onclick="openSendMessageModal()">Start Sending Email</a>
+        </li>           
+        <li>
+          <a href="/adminstafflist">List of Admin Staff</a>
+        </li>      
+        <li>
+          <a href="/clientslist">List of Clients</a>
+        </li>
+        <li>
+          <a href="/createprofile">Create Profile</a>
+        </li>
+        <li>
+          <a href="/editprofile">Edit Profile</a>
+        </li>
+        <!--
+        <li>
+          <a href="/deleteprofile">Delete Profile</a>
+        </li>
+        -->
+        <li>
+          <a href="/uploadfile">Upload File</a>
+        </li>
+        <li>
+          <a href="/recyclebin">Recycle Bin</a>
+        </li>
+        <li>
+          <a href="/giveaccess">Give Access</a>
+        </li>
+      </ul>
+      </div>
+
+    <div class="container inbox">
+        <% if(msg != ''){ %>
+            <h1 style="color: greenyellow;"><%= msg %></h1>
+        <% } %>
+
+        <h1>Upload File</h1>
+        <div class="container upload-file-container">
+         
+          <form action="/uploadfile/upload" method="post" role="form" enctype="multipart/form-data">
+            <label>Upload Image to Gallery</label><br/>
+            <input name="uploadimage" type="file"/><br/>
+            <button type="submit">Upload Image</button>
+          </form>              
+          <br/>      
+          <form action="/uploadfile/upload" method="post" role="form" enctype="multipart/form-data">
+            <label>Upload Audio to Gallery</label><br/>
+            <input name="uploadaudio" type="file" accept="audio/*"/><br/>
+            <button type="submit">Upload Audio</button>
+          </form>              
+          <br/>           
+          <form action="/uploadfile/uploadvideo" method="post" role="form" enctype="multipart/form-data">
+            <label>Upload Video to Gallery</label><br/>
+            <input name="uploadvideo" type="file" accept="video/*" /><br/>
+            <button type="submit">Upload Video</button>
+          </form>              
+          <br/> 
+          <form action="/" method="post" role="form">
+            <label>Write a Temprary Message to Home Page</label><br/>
+            <textarea placeholder="write a temprary message">
+
+            </textarea><br/>
+            <button>Write a Temprary Advertisement to Home Page</button>
+          </form> 
+
+        </div>
+
+          
+          
+
+                 
+           
+                       
+    </div>      
+
+
+  
+    
+ 
+
+</div>
+<%- include('modal') %>
+  <%- include('modaladmin') %> 
+  <%- include('modalreply') %> 
+  <%- include('dashboardfooter') %>
+
+
+
+

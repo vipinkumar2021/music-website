@@ -1,0 +1,84 @@
+<%- include('dashboardheader') %>
+
+<div class="item item3 main">
+  <div class="sidenav-dashboardadmin">
+    <ul>      
+      <li>
+        <a href="/dashboardadmin">Admin Dashboard</a>
+      </li>
+      <li>
+        <a href="/inbox">Inbox</a>
+      </li>
+      <li>
+        <a href="/outbox">Outbox</a>
+      </li>      
+      <li>
+        <a href="#" onclick="openSendMessageModal()">Start Sending Email</a>
+      </li>           
+      <li>
+        <a href="/adminstafflist">List of Admin Staff</a>
+      </li>      
+      <li>
+        <a href="/clientslist">List of Clients</a>
+      </li>
+      <li>
+        <a href="/createprofile">Create Profile</a>
+      </li>
+      <li>
+        <a href="/editprofile">Edit Profile</a>
+      </li>
+      <!--
+      <li>
+        <a href="/deleteprofile">Delete Profile</a>
+      </li>
+      -->
+      <li>
+        <a href="/uploadfile">Upload File</a>
+      </li>
+      <li>
+        <a href="/recyclebin">Recycle Bin</a>
+      </li>
+      <li>
+        <a href="/giveaccess">Give Access</a>
+      </li>
+    </ul>
+  </div>
+  
+    <div class="adminstafflist">
+        <h1>List Of Clients</h1>
+        <% if(clientsData.length > 0){ %>
+        <% clientsData.forEach(function(row) { %> 
+            <ul>
+                <li><a href="#">ID: <%= row._id  %></a> <a href="#">Name: <%= row.Firstname %> <%= row.Lastname %></a> <a href="#">Email: <%= row.Email %> </a> <a href="#" onclick="openViewProfileModal()">View Profile</a> </li>
+            </ul>
+            
+        <%  }) } %>          
+        
+    </div>
+  <!--Send Message Modal starts here-->
+ 
+  <div class="modal-parent-send-message">
+    <div class="modal-send-message">
+        <h1 style="text-align: center;">Send Message</h1>        
+        <form action="dashboardadmin/Send" method="post" role="form">
+          <label for="messageto">Message To</label>
+          <input name="messageto" type="email" placeholder="Enter Recipient's Email..."/>
+          <label for="writemessage">Write Message</label><br/>
+          <textarea name="writemessage" type="text" placeholder="Enter Your Message here...">
+
+          </textarea><br/><br/>
+          <button type="submit">Send Message</button><button type="button" onclick="closeSendMessageModal()">cancel</button><br/><br/>        
+        </form>
+        <span class="X-send-message" onclick="closeSendMessageModal()">&times;</span>
+    </div>
+  </div>
+  <!--Send Message Modal ends here-->
+ 
+
+
+</div>
+
+
+
+<%- include('modalviewprofile') %> 
+<%- include('dashboardfooter') %>

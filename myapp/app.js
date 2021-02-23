@@ -25,6 +25,12 @@ var dashboardadminRouter = require('./routes/dashboardadmin');
 var inboxRouter = require('./routes/inbox');
 var outboxRouter = require('./routes/outbox');
 var adminstafflistRouter = require('./routes/adminstafflist');
+var clientslistRouter = require('./routes/clientslist');
+var recyclebinRouter = require('./routes/recyclebin');
+var createprofileRouter = require('./routes/createprofile');
+var editprofileRouter = require('./routes/editprofile');
+var uploadfileRouter = require('./routes/uploadfile');
+var giveaccessRouter = require('./routes/giveaccess');
 
 var musicclassesRouter = require('./routes/musicclasses');
 var dashboardmusicclassesRouter = require('./routes/dashboardmusicclasses');
@@ -100,6 +106,12 @@ app.use('/dashboardadmin', dashboardadminRouter);
 app.use('/inbox', inboxRouter);
 app.use('/outbox', outboxRouter);
 app.use('/adminstafflist', adminstafflistRouter);
+app.use('/clientslist', clientslistRouter);
+app.use('/recyclebin', recyclebinRouter);
+app.use('/createprofile', createprofileRouter);
+app.use('/editprofile', editprofileRouter);
+app.use('/uploadfile', uploadfileRouter);
+app.use('/giveaccess', giveaccessRouter);
 
 app.use('/musicclasses', musicclassesRouter);
 app.use('/dashboardmusicclasses', dashboardmusicclassesRouter);

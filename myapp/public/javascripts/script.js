@@ -69,11 +69,13 @@ function closeSigninModal() {
     parentModalSignin.style.display = 'none'; 
 }
 //close modal when clicked anywhere outside
-var parentModalSignin = document.getElementsByClassName('modal-parent-signin')[0];
+//var parentModalSignin = document.getElementsByClassName('modal-parent-signin')[0];
+var parentModalSignin = document.getElementById('signin');
 parentModalSignin.addEventListener('click', closeSigninModalForWindow);
 function closeSigninModalForWindow(e) {
     if(e.target.className == 'modal-parent-signin') {
         parentModalSignin.style.display = 'none';
+
 
     }
 }

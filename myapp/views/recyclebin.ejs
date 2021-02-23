@@ -1,0 +1,120 @@
+<%- include('dashboardheader') %>
+
+<div class="item item3 main">
+
+    <div class="sidenav-dashboardadmin">
+      <ul>      
+        <li>
+          <a href="/dashboardadmin">Admin Dashboard</a>
+        </li>
+        <li>
+          <a href="/inbox">Inbox</a>
+        </li>
+        <li>
+          <a href="/outbox">Outbox</a>
+        </li>      
+        <li>
+          <a href="#" onclick="openSendMessageModal()">Start Sending Email</a>
+        </li>           
+        <li>
+          <a href="/adminstafflist">List of Admin Staff</a>
+        </li>      
+        <li>
+          <a href="/clientslist">List of Clients</a>
+        </li>
+        <li>
+          <a href="/createprofile">Create Profile</a>
+        </li>
+        <li>
+          <a href="/editprofile">Edit Profile</a>
+        </li>
+        <!--
+        <li>
+          <a href="/deleteprofile">Delete Profile</a>
+        </li>
+        -->
+        <li>
+          <a href="/uploadfile">Upload File</a>
+        </li>
+        <li>
+          <a href="/recyclebin">Recycle Bin</a>
+        </li>
+        <li>
+          <a href="/giveaccess">Give Access</a>
+        </li>
+      </ul>
+      </div>
+
+    <div class="container inbox recyclebin">
+        <% if(msg != ''){ %>
+            <h1 style="color: lightgreen;"><%= msg %></h1>
+        <% } %>
+
+        <h1>Recycle Bin</h1> 
+        <h3>All Deleted Data</h3>
+
+        <% if(deletedData) { %>
+          <%= deletedData %>
+        <% } %>
+        
+        <h3>Deleted Customers' Accounts' Details:</h3>
+           
+
+                
+        <ul>            
+          <li>            
+                         
+          </li>           
+        </ul>
+        
+        
+        <h3>Deleted Admin Staffs' Accounts' Details:</h3>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+
+        <h3>Deleted Inbox Messages:</h3>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+
+        <h3>Deleted Outbox Messages:</h3>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+
+        <h3>Deleted Gallery Images:</h3>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+
+        <h3>Deleted Gallery Videos:</h3>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+
+
+        
+          
+          
+          
+         
+           
+                       
+    </div>  
+ 
+
+</div>
+<%- include('modal') %>
+  <%- include('modaladmin') %> 
+  <%- include('modalreply') %> 
+  <%- include('dashboardfooter') %>
+
+
+
+

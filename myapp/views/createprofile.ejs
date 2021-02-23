@@ -1,0 +1,122 @@
+<%- include('dashboardheader') %>
+
+<div class="item item3 main">
+
+    <div class="sidenav-dashboardadmin">
+      <ul>      
+        <li>
+          <a href="/dashboardadmin">Admin Dashboard</a>
+        </li>
+        <li>
+          <a href="/inbox">Inbox</a>
+        </li>
+        <li>
+          <a href="/outbox">Outbox</a>
+        </li>      
+        <li>
+          <a href="#" onclick="openSendMessageModal()">Start Sending Email</a>
+        </li>           
+        <li>
+          <a href="/adminstafflist">List of Admin Staff</a>
+        </li>      
+        <li>
+          <a href="/clientslist">List of Clients</a>
+        </li>
+        <li>
+          <a href="/createprofile">Create Profile</a>
+        </li>
+        <li>
+          <a href="/editprofile">Edit Profile</a>
+        </li>
+        <!--
+        <li>
+          <a href="/deleteprofile">Delete Profile</a>
+        </li>
+        -->
+        <li>
+          <a href="/uploadfile">Upload File</a>
+        </li>
+        <li>
+          <a href="/recyclebin">Recycle Bin</a>
+        </li>
+        <li>
+          <a href="/giveaccess">Give Access</a>
+        </li>
+      </ul>
+      </div>
+
+    <div class="container createprofile">
+        <% if(msg != ''){ %>
+            <h1 style="color: lightgreen;"><%= msg %></h1>
+        <% } %>
+
+        <h1>Create New Profile</h1> 
+ 
+  <div class="container admin-signup-container">
+    <div class="row row-1">
+         <!--Admin Staff Sign up starts here-->
+         
+         <h1 style="text-align: center;">Create Admin Staff Profile</h1>
+         <h2 style="text-align: center;">Step 1.</h2>
+         <h2 style="text-align: center;">Add New Staff to Team</h2>
+         <form action="createprofile/addnewstaff" method="post" role="form">
+            <label for="email">New Staff's Email ID</label><br/>
+            <input name="email" type="email" placeholder="Enter New Staff's Email..." required /><br/><br/>
+            <button type="submit">Add New Staff to Team</button>
+         </form>
+         
+         <h2 style="text-align: center;">Step 2.</h2>
+         <h2 style="text-align: center;">Create New Staff's Profile</h2>
+        
+         <form action="/createprofile/dashboardsignupadmin" method="post" role="form" enctype="multipart/form-data">
+          <label for="firstname">First Name</label><br/>
+          <input name="firstname" type="text" placeholder="Enter Your First Name..." /><br/><br/>
+          <label for="lastname">Last Name</label><br/>
+          <input name="lastname" type="text" placeholder="Enter Your Last Name..." /><br/><br/>
+          <label for="usrname">Username</label><br/>
+          <input name="usrname" type="username" placeholder="Create a Username..."  /><br/><br/>
+          <label for="mobilenumber">Mobile Number</label><br/>
+          <input name="mobilenumber" type="tel" placeholder="Enter Your Mobile Number..." /><br/><br/>
+          <label for="email">Email</label><br/>
+          <input name="email" type="email" placeholder="Enter Your Email id..." /><br/><br/>
+          <label for="nationalid">National Id</label><br/>
+          <input name="nationalid" type="nationalid" placeholder="Enter Your National id..." /><br/><br/>
+          <label for="nationalid">Upload National Id Image</label><br/>
+          <input name="nationalidimage" type="file" /><br/><br/>         
+          <button type="submit">Proceed to Sign up</button><button onclick="closeSignupModal()">cancel</button><br/><br/>
+        </form>  
+        <!--Admin Staff Sign up ends here-->       
+    </div>
+
+    <div class="row row-2">
+        <!--Customers Sign up starts here-->
+        <h1 style="text-align: center;">Create Customer Profile</h1>
+        <form action="/dashboardsignupcustomer" method="post" role="form" >
+            <label for="firstname">First Name</label><br/>
+            <input name="firstname" type="text" placeholder="Enter Your First Name..." required /><br/><br/>
+            <label for="lastname">Last Name</label><br/>
+            <input name="lastname" type="text" placeholder="Enter Your Last Name..." required /><br/><br/>
+            <label for="usrname">Username</label><br/>
+            <input name="usrname" type="username" placeholder="Create a Username..." required /><br/><br/>
+            <label for="mobilenumber">Mobile Number</label><br/>
+            <input name="mobilenumber" type="tel" placeholder="Enter Your Mobile Number..." required /><br/><br/>
+            <label for="email">Email</label><br/>
+            <input name="email" type="email" placeholder="Enter Your Email id..." required /><br/><br/>
+            <button type="submit">Proceed to Sign up</button><button onclick="closeSignupModal()">cancel</button><br/><br/>
+                      
+          </form>
+        <!--Customers Sign up ends here-->
+   </div>
+  </div>
+           </div>
+
+
+</div>
+<%- include('modal') %>
+  <%- include('modaladmin') %> 
+  <%- include('modalreply') %> 
+  <%- include('dashboardfooter') %>
+
+
+
+

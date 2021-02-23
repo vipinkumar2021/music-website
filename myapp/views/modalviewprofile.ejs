@@ -1,0 +1,35 @@
+<!--Customer Profile Modal starts here from inbox--> 
+<div class="modal-parent-view-customer-profile">
+    <div class="modal-view-customer-profile">
+        <h1 style="text-align: center;">Customer Profile</h1>        
+        <ul>
+            <li>
+                Username: 
+            </li>
+
+            <li>
+                First Name: <%= clientsData.Firstname %>
+            </li>
+            <li>
+                Last Name: 
+            </li>
+            <li>
+                Mobile Number: 
+            </li>
+            <li>
+                Email Id: 
+            </li>
+            <li>
+                Account Created on: 
+            </li>
+        </ul>
+        <a href="#">Edit Profile</a><a href="#" onclick="openConfirmBeforeDeleteModal()">Delete Profile</a>
+        
+        <span class="X-view-customer-profile" onclick="closeViewProfileModal()">&times;</span>
+    </div>
+  </div>
+  <!--View Customer Profile Modal ends here from inbox-->
+
+  
+
+<%- include('modal') %> 
