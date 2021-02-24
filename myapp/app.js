@@ -33,6 +33,7 @@ var uploadfileRouter = require('./routes/uploadfile');
 var giveaccessRouter = require('./routes/giveaccess');
 var dashboardwebsiteadminRouter = require('./routes/dashboardwebsiteadmin');
 var dashboardgalleryadminRouter = require('./routes/dashboardgalleryadmin');
+var dashboardcartadminRouter = require('./routes/dashboardcartadmin');
 
 var musicclassesRouter = require('./routes/musicclasses');
 var dashboardmusicclassesRouter = require('./routes/dashboardmusicclasses');
@@ -116,6 +117,7 @@ app.use('/uploadfile', uploadfileRouter);
 app.use('/giveaccess', giveaccessRouter);
 app.use('/dashboardwebsiteadmin', dashboardwebsiteadminRouter);
 app.use('/dashboardgalleryadmin', dashboardgalleryadminRouter);
+app.use('/dashboardcartadmin', dashboardcartadminRouter);
 
 app.use('/musicclasses', musicclassesRouter);
 app.use('/dashboardmusicclasses', dashboardmusicclassesRouter);

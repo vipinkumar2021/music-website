@@ -1,0 +1,81 @@
+<%- include('dashboardheaderadmin') %>
+
+<div class="item item3 main">
+    <div class="container dashboardcart" >
+        <br/><br/>
+        <h1>Welcome to Cart</h1> 
+        
+        <h2>View Your Cart before buying our service</h2>
+          <% if(msg != ''){ %>
+            <h1 style="color:lightgreen;"><%= msg %></h1> 
+          <% } else { %>
+
+
+            <% if( currentAccountUserData != '' || currentAccountUserData != null) { %> 
+
+                <table>
+                    <tr>
+                        <th>Order Id</th>
+                        <th>Template Name</th>
+                        <th>Website Features</th>
+                        <th>Website Content</th>
+                        <th>price</th>
+                        <th>Remove</th>                
+                    </tr>
+                    <tr>
+                        
+                        
+                        <td>
+                            <% if(currentAccountUserData._id != ''   ) { %>
+                            <%= currentAccountUserData._id %> 
+                            <% } %>                                                 
+                        </td>
+    
+                        <td>
+                            <% if(currentAccountUserData.TemplateName != ''   ) { %>
+                                <%= currentAccountUserData.TemplateName %> (Rs. <%= currentAccountUserData.TemplatePrice %>) 
+                            <% } %>
+                        </td>
+                        <td><button class="cartitem-button" onclick="openViewWebsiteFeaturesListModal()">Click here</button></td>
+                        <td><button class="cartitem-button" onclick="openViewWebsiteContentModal()">Click here</button></td>
+                        <td>Rs.99999.00</td> 
+                        <form action="/dashboardgetstarted/findbyidandremove" method="post" role="form">
+                            <input name="currentAccountUserDataId" type="hidden" value="<%= currentAccountUserData._id %>"/>
+                            <td><button type="submit" class="cartitem-button">Remove</button></td>            
+                        </form>               
+                                                   
+                    </tr>
+                </table><br/>
+                
+                <%- include('viewmodal') %>
+                
+              <% } %>
+
+          <% } %> 
+
+          
+          
+                
+        
+           
+
+        <h3>Forgot Something to Add? <a href="/dashboardgetstarted" style="text-decoration: none;">Add Now</a></h3>
+        <section class="container content-section">
+            <h2>Cart</h2>
+        </section>
+        <button id="payBtn" >Pay for Your Order</button>
+        
+    </div> 
+    
+  
+    
+ 
+
+</div>
+<%- include('modal') %>
+
+<%- include('dashboardfooteradmin') %>
+
+
+
+
