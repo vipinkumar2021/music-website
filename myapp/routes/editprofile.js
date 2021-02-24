@@ -6,23 +6,18 @@ var outboxModel = require('../modules/outboxschema');
 var nodemailer = require('nodemailer');
   /* GET home page. */
   router.get('/',  function(req, res, next) {
-    var loginUser = {
-      loginUserCustomer: req.session.adminLoginUserName,//localStorage.getItem('customerLoginUserName'),
-      loginUserEmployee: req.session.adminLoginUserName,//localStorage.getItem('employeeLoginUserName'),
-      loginUserAdmin: req.session.adminLoginUserName//localStorage.getItem('adminLoginUserName')
-    };    
-
-      if(loginUser.loginUserCustomer) {
-        res.render('editprofile', { title: 'SareGaMa Music Academy & GMP Studio', msg:'', loginUser: loginUser.loginUserCustomer });
-      } else if(loginUser.loginUserEmployee){
-        res.render('editprofile', { title: 'SareGaMa Music Academy & GMP Studio', msg:'', loginUser: loginUser.loginUserEmployee });
-      } else if(loginUser.loginUserAdmin) {
-        res.render('editprofile', { title: 'SareGaMa Music Academy & GMP Studio', msg:'', loginUser: loginUser.loginUserAdmin});
+    var loginUser = req.session.adminLoginUserName;//localStorage.getItem('adminLoginUserName');
+  
+    if(loginUser) {
+        res.render('createprofile', { title: 'SareGaMa Music Academy & GMP Studio', msg:'', loginUser: loginUser});
       } else {
-        res.redirect('/');
+        res.redirect('admin');
       }   
+    });   
+  
+  
         
-  });
+  
   
 
  

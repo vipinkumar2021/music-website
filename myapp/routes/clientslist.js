@@ -15,7 +15,7 @@ router.get('/',  function(req, res, next) {
             res.render('clientslist', { title: 'SaReGaMa Music Academy & GMP Studio', loginUser: loginUserAdmin, clientsData: clientsData });
         });
     } else {
-        res.redirect('index');
+        res.redirect('/');
     }
   });
   

@@ -69,7 +69,7 @@
                     <a href="/dashboardcart">View Cart</a>
                   </li>
                   <li><a href="#" onclick="openConfirmBeforeDeleteModal()">Delete Account</a></li>
-                  <li><a href="/editaccount">Edit Account</a></li>
+                  <li><a href="/editaccountcustomer">Edit Account</a></li>
                   <li>
                     <form action="/signout" method="post" role="form">
                       <button class="signoutBtn" type="submit"><i style="color: rgb(71, 157, 255);">Log out</i></button>
@@ -124,7 +124,7 @@
               <a href="#" onclick="openContactModal()">Contact</a>
             </li>             
             <li>
-              <a href="/admin">Admin staff</a>
+              <a onclick="alert('You are not an Admin, Your are a Customer')" class="anchor-tag">Admin staff</a>
             </li> 
              
             <li>

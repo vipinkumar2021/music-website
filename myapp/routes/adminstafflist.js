@@ -14,7 +14,7 @@ router.get('/',  function(req, res, next) {
             res.render('adminstafflist', { title: 'Frontend Development', loginUser: loginUserAdmin, adminStaffData: adminStaffData });
         });
     } else {
-        res.redirect('index');
+        res.redirect('/');
     }
   });
   

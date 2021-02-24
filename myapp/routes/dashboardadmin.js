@@ -111,19 +111,24 @@ router.get('/', checkLoginUser, function(req, res, next) {
   router.post('/upload', upload, /*checkLoginUser,*/ function(req, res, next) {
     //var loginUser = localStorage.getItem('loginUserName');
     var loginUser = req.session.adminLoginUserName;
-              var uploadFileName = req.file.filename;
-              var uploadDetails = new uploadModel({
-                Filename: uploadFileName
-              });
-              uploadDetails.save((err)=> {
-                if(err) throw err;
-              uploadModel.find({}).exec((err, uploadedImage)=> {
-                if(err) throw err;
-                res.render('dashboardadmin', { title: 'Frontend Webdeveloper', loginUser: loginUser, staffdata: '', staffid: '', msg: 'File Uploaded Successfully', file: '', uploadedImage: '', savedData: '' });
+    if(loginUser) {
+      var uploadFileName = req.file.filename;
+      var uploadDetails = new uploadModel({
+        Filename: uploadFileName
+      });
+      uploadDetails.save((err)=> {
+        if(err) throw err;
+      uploadModel.find({}).exec((err, uploadedImage)=> {
+        if(err) throw err;
+        res.render('dashboardadmin', { title: 'Frontend Webdeveloper', loginUser: loginUser, staffdata: '', staffid: '', msg: 'File Uploaded Successfully', file: '', uploadedImage: '', savedData: '' });
 
-              });             
-                
-              });       
+      });             
+        
+      });  
+    } else {
+      res.redirect('/');
+    }
+                 
               });      
     
               
@@ -133,7 +138,8 @@ router.get('/', checkLoginUser, function(req, res, next) {
 router.post('/Send', function(req, res, next) {
   //var loginUser = localStorage.getItem('adminLoginUserName')
   var loginUser = req.session.adminLoginUserName;
-  //var loginUser = localStorage.getItem('loginUserName');
+  if(loginUser) {
+
   var messageto = req.body.messageto;  
   var output = `
   <h3>Contact Details</h3>
@@ -177,6 +183,11 @@ transporter.sendMail(mailOption, function(err, info) {
 });
 });
 //Nodemailer ends here
+
+  } else {
+    res.redirect('/')
+  } 
+  
 });
 // Send Email from website to any email id ends here
 

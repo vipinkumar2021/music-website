@@ -7,7 +7,7 @@ var nodemailer = require('nodemailer');
   /* GET home page. */
   router.get('/',  function(req, res, next) {
     var loginUser = req.session.adminLoginUserName;//localStorage.getItem('adminLoginUserName')  
-    var DeletedCustomerAccountDetails = 'DeletedCustomerAccountDetails';
+    //var DeletedCustomerAccountDetails = 'DeletedCustomerAccountDetails';
     if(loginUser) {
       recycleBinModel.find({}).exec((err, deletedData) => {
         if(err) throw err;
@@ -17,8 +17,8 @@ var nodemailer = require('nodemailer');
           res.render('recyclebin', { title: 'SareGaMa Music Academy & GMP Studio', msg:'', loginUser: loginUser, deletedData: deletedData});
 
         } else {
-          res.render('recyclebin', { title: 'SareGaMa Music Academy & GMP Studio', msg:'No Data Available', loginUser: loginUser, deletedData: ''});
-
+          //res.render('recyclebin', { title: 'SareGaMa Music Academy & GMP Studio', msg:'No Data Available', loginUser: loginUser, deletedData: ''});
+          res.redirect('/');
         }          
       
       });

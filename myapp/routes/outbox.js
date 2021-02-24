@@ -5,29 +5,28 @@ var outboxModel = require('../modules/outboxschema');
 //nodemailer for sending emails from website to clients
 var nodemailer = require('nodemailer');
   /* GET home page. */
-  router.get('/',  function(req, res, next) {
-    var loginUser = {
-      loginUserCustomer: req.session.customerLoginUserName,//localStorage.getItem('customerLoginUserName'),
-      loginUserEmployee: req.session.employeeLoginUserName,//localStorage.getItem('employeeLoginUserName'),
-      loginUserAdmin: req.session.adminLoginUserName//localStorage.getItem('adminLoginUserName')
+  router.get('/', function(req, res, next) {
+    var loginUserAdmin = req.session.adminLoginUserName;
+    if(loginUserAdmin) {
   
-    };
-
-    outboxModel.find({}).exec((err, outBoxData) => {
-      if(err) throw err;
-
-      if(loginUser.loginUserCustomer) {
-        res.render('outbox', { title: 'SareGaMa Music Academy & GMP Studio', msg:'', loginUser: loginUser.loginUserCustomer, outBoxData: outBoxData });
-      } else if(loginUser.loginUserEmployee){
-        res.render('outbox', { title: 'SareGaMa Music Academy & GMP Studio', msg:'', loginUser: loginUser.loginUserEmployee, outBoxData: outBoxData });
-      } else if(loginUser.loginUserAdmin) {
-        res.render('outbox', { title: 'SareGaMa Music Academy & GMP Studio', msg:'', loginUser: loginUser.loginUserAdmin, outBoxData: outBoxData});
-      } else {
-        res.redirect('/');
-      }   
-    });    
-  });
+      outboxModel.find({}).exec((err, outBoxData) => {
+        if(err) throw err;
   
+        if(outBoxData != null) {
+          res.render('outbox', { title: 'SareGaMa Music Academy & GMP Studio', msg:'', loginUser: loginUserAdmin, outBoxData: outBoxData});
+   
+        } else {
+          res.render('dashboardadmin', { title: 'SareGaMa Music Academy & GMP Studio', msg:'Outbox Empty', loginUser: loginUserAdmin, outBoxData: ''});
+   
+        }
+      });
+  
+    } else {
+      res.redirect('/');
+    }
+   });
+   
+
   // Reply Email from website to any email id starts here
 /*
   router.post('/replyfromoutbox', function(req, res, next) {

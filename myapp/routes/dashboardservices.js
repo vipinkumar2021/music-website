@@ -15,7 +15,7 @@ router.get('/',  function(req, res, next) {
   } else if(loginUser.loginUserEmployee){
     res.render('dashboardservices', { title: 'Front End Web Developer', msg:'', loginUser: loginUser.loginUserEmployee });
   } else if(loginUser.loginUserAdmin) {
-    res.render('dashboardservices', { title: 'Front End Web Developer', msg:'', loginUser: loginUser.loginUserAdmin});
+    res.render('dashboardservicesadmin', { title: 'Front End Web Developer', msg:'', loginUser: loginUser.loginUserAdmin});
   } else {
     res.redirect('services');
   }   

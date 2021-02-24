@@ -22,32 +22,32 @@
           <ul>
            
             <li>
-              <a href="/dashboardwebsite/#homecontent" id="home-icon">Home</a>
+              <a href="/dashboardwebsiteadmin/#homecontent" id="home-icon">Home</a>
             </li>
             <li>
-              <a href="/dashboardwebsite/#aboutcontent">About</a>
+              <a href="/dashboardwebsiteadmin/#aboutcontent">About</a>
             </li>
             <li>
-              <a href="/dashboardwebsite/#whyuscontent">Why Us</a>
+              <a href="/dashboardwebsiteadmin/#whyuscontent">Why Us</a>
             </li> 
             
             
             <li>
               <a href="#">Services</a>
               <ul>
-                <li><a href="/dashboardmusicproduction">Music Production</a></li>
-                <li><a href="/dashboardvocalclasses">Vocal Classes</a></li>
-                <li><a href="/dashboardguitarclasses">Guitar Classes</a></li>
-                <li><a href="/dashboardtablaclasses">Tabla Classes</a></li>
-                <li><a href="/dashboardpianoclasses">Piano Classes</a></li>
-                <li><a href="/dashboardharmoniumclasses">Harmonium Classes</a></li>
-                <li><a href="/dashboardbookliveconcert">BookLive Concert</a></li>
-                <li><a href="/dashboardaudiorecordyoursong">Audio Record Your Song</a></li>
-                <li><a href="/dashboardvideoshootyoursong">Video Shoot Your Song</a></li>                
+                <li><a href="/dashboardmusicproductionadmin">Music Production</a></li>
+                <li><a href="/dashboardvocalclassesadmin">Vocal Classes</a></li>
+                <li><a href="/dashboardguitarclassesadmin">Guitar Classes</a></li>
+                <li><a href="/dashboardtablaclassesadmin">Tabla Classes</a></li>
+                <li><a href="/dashboardpianoclassesadmin">Piano Classes</a></li>
+                <li><a href="/dashboardharmoniumclassesadmin">Harmonium Classes</a></li>
+                <li><a href="/dashboardbookliveconcertadmin">BookLive Concert</a></li>
+                <li><a href="/dashboardaudiorecordyoursongadmin">Audio Record Your Song</a></li>
+                <li><a href="/dashboardvideoshootyoursongadmin">Video Shoot Your Song</a></li>                
             </ul>
             </li>
             <li>
-              <a href="/dashboardgallery">Gallery</a>
+              <a href="/dashboardgalleryadmin">Gallery</a>
             </li> 
             <li>
               <a href="#" onclick="openContactModal()">Contact</a>
@@ -56,7 +56,7 @@
           </ul>
           <ul class="dashboard-logged-in-dropdown">
             <li>
-                <a href="#" style="color: rgb(71, 157, 255);">
+                <a href="/dashboardadmin" style="color: rgb(71, 157, 255);">
                     <i>
                       <% if(loginUser){ %>  
                         <%= loginUser %> 
@@ -66,10 +66,10 @@
                 <ul id="dashboard-logged-in-dropdown-menu">
                   <li><a href="/dashboardcustomer" >View Profile</a></li>
                   <li>
-                    <a href="/dashboardcart">View Cart</a>
+                    <a href="/dashboardcartadmin">View Cart</a>
                   </li>
                   <li><a href="#" onclick="openConfirmBeforeDeleteModal()">Delete Account</a></li>
-                  <li><a href="/editaccount">Edit Account</a></li>
+                  <li><a href="/editaccountadmin">Edit Account</a></li>
                   <li>
                     <form action="/signout" method="post" role="form">
                       <button class="signoutBtn" type="submit"><i style="color: rgb(71, 157, 255);">Log out</i></button>
@@ -95,14 +95,14 @@
               <a href="javascript:void(0)" class="closeBtn">&times;</a>
             </li>
             <li>
-              <a href="/dashboardcustomer" >
+              <a href="/dashboardadmin" >
                   Logged in As: <% if(loginUser){ %>  
                       <%= loginUser %> 
                       <% } %>  
               </a>
             </li> 
             <li>
-                <a href="/dashboardwebsite/#homecontent" onclick="closeSideNav()">Home</a>
+                <a href="/dashboardwebsiteadmin/#homecontent" onclick="closeSideNav()">Home</a>
               </li>
             <li>
                 <a href="/inbox">Inbox</a>
@@ -140,27 +140,27 @@
                 <a href="/giveaccess">Give Access</a>
               </li>                 
             <li>
-              <a href="/dashboardcart">View Cart</a>
+              <a href="/dashboardcartadmin">View Cart</a>
             </li>
             
                         
             <li>
-              <a href="/dashboardwebsite/#aboutcontent" onclick="closeSideNav()">About</a>
+              <a href="/dashboardwebsiteadmin/#aboutcontent" onclick="closeSideNav()">About</a>
             </li>
             <li>
-              <a href="/dashboardwebsite/#whyuscontent" onclick="closeSideNav()">Why Us</a>
+              <a href="/dashboardwebsiteadmin/#whyuscontent" onclick="closeSideNav()">Why Us</a>
             </li>  
             <li>
-              <a href="/dashboardservices" >Services</a>
+              <a href="/dashboardservicesadmin" >Services</a>
             </li>
             <li>
-              <a href="/dashboardgallery">Gallery</a>
+              <a href="/dashboardgalleryadmin">Gallery</a>
             </li> 
             <li>
               <a href="#" onclick="openContactModal()">Contact</a>
             </li>             
             <li>
-              <a href="/admin">Admin staff</a>
+              <a href="/dashboardadmin">Admin staff</a>
             </li> 
              
             <li>

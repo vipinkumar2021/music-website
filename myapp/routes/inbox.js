@@ -6,35 +6,34 @@ var outboxModel = require('../modules/outboxschema');
 //nodemailer for sending emails from website to clients
 var nodemailer = require('nodemailer');
   /* GET home page. */
-  router.get('/',  function(req, res, next) {
-    var loginUser = {
-        loginUserCustomer: req.session.customerLoginUserName,//localStorage.getItem('customerLoginUserName'),
-        loginUserEmployee: req.session.employeeLoginUserName,//localStorage.getItem('employeeLoginUserName'),
-        loginUserAdmin: req.session.adminLoginUserName//localStorage.getItem('adminLoginUserName')
-    
-      };
+  
+ router.get('/', function(req, res, next) {
+  var loginUserAdmin = req.session.adminLoginUserName;
+  if(loginUserAdmin) {
 
     clientsMessagesModel.find({}).exec((err, clientsMessagesData) => {
       if(err) throw err;
-
-      if(loginUser.loginUserCustomer) {
-        res.render('inbox', { title: 'Front End Web Developer', msg:'', loginUser: loginUser.loginUserCustomer, clientsMessagesData: clientsMessagesData });
-      } else if(loginUser.loginUserEmployee){
-        res.render('inbox', { title: 'Front End Web Developer', msg:'', loginUser: loginUser.loginUserEmployee, clientsMessagesData: clientsMessagesData });
-      } else if(loginUser.loginUserAdmin) {
-        res.render('inbox', { title: 'Front End Web Developer', msg:'', loginUser: loginUser.loginUserAdmin, clientsMessagesData: clientsMessagesData});
+      if(clientsMessagesData != null) {
+        res.render('inbox', { title: 'Front End Web Developer', msg:'', loginUser: loginUserAdmin, clientsMessagesData: clientsMessagesData});
+ 
       } else {
-        res.redirect('/');
-      }   
-    });    
-  });
-  
+        res.render('dashboardadmin', { title: 'Front End Web Developer', msg:'Inbox Empty', loginUser: loginUserAdmin, clientsMessagesData: ''});
+ 
+      }
+    });
 
+  } else {
+    res.redirect('/');
+  }
+ });
+ 
   // Reply Email from website to any email id starts here
 router.post('/reply', function(req, res, next) {
   //var loginUser = localStorage.getItem('loginUserName');
  var loginUser = req.session.adminLoginUserName;//localStorage.getItem('adminLoginUserName')
- var messageto = req.body.messageto;  
+ if(loginUser) {
+
+  var messageto = req.body.messageto;  
  var output = `
  <h3>Contact Details</h3>
  <ul>
@@ -77,6 +76,11 @@ transporter.sendMail(mailOption, function(err, info) {
 });
 //Nodemailer ends here
 });
+
+ } else {
+  res.redirect('/');
+ }
+ 
 });
 // Reply Email from website to any email id ends here
 
@@ -84,7 +88,9 @@ transporter.sendMail(mailOption, function(err, info) {
  router.post('/forwardemail', function(req, res, next) {
   //var loginUser = localStorage.getItem('loginUserName');
  var loginUser = req.session.adminLoginUserName//localStorage.getItem('adminLoginUserName')
- var messageto = req.body.messageto;  
+  if(loginUser) {
+
+    var messageto = req.body.messageto;  
  var output = `
  <h3>Contact Details</h3>
  <ul>
@@ -127,6 +133,11 @@ transporter.sendMail(mailOption, function(err, info) {
 });
 //Nodemailer ends here
 });
+
+  } else {
+    res.redirect('/');
+  }
+ 
 });
 // Forward Email from website to any email id ends here
 

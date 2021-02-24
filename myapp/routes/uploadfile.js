@@ -7,6 +7,18 @@ var uploadFileModel = require('../modules/uploadschema');
 var nodemailer = require('nodemailer');
   /* GET home page. */
   router.get('/',  function(req, res, next) {
+    var loginUser = req.session.adminLoginUserName;//localStorage.getItem('adminLoginUserName');
+  
+    if(loginUser) {
+        res.render('uploadfile', { title: 'SareGaMa Music Academy & GMP Studio', msg:'', loginUser: loginUser});
+      } else {
+        res.redirect('admin');
+      }   
+    });   
+  
+  
+  /*
+  router.get('/',  function(req, res, next) {
     var loginUser = {
       loginUserCustomer: req.session.adminLoginUserName,//localStorage.getItem('customerLoginUserName'),
       loginUserEmployee: req.session.adminLoginUserName,//localStorage.getItem('employeeLoginUserName'),
@@ -26,7 +38,7 @@ var nodemailer = require('nodemailer');
       }   
         
   });
-
+*/
 //Require multer for file upload
 var multer = require('multer');
 //require path

@@ -1,0 +1,37 @@
+<%- include('dashboardheaderadmin')  %> 
+
+      <div class="item item3 main">
+        <div class="container gallery"> 
+        <% if(msg != '') {%> 
+         <h1 style="color: lightgreen;"> <%= msg %> </h1>  
+        <% } %> 
+                
+        <h1>Image Gallery</h1>
+        <h2 style=" color: aliceblue; text-align: center; border-bottom: 3px solid aliceblue; border-left: 3px solid aliceblue; border-right: 3px solid aliceblue; border-radius: 8px; box-shadow: 4px 4px 5px rgb(197, 218, 236);">Please check out our Images</h2>
+
+        <div class="img-gallery">
+          <div class="box"><img src="../uploads/uploadimage_1606733628267.jpg" alt="image"/></div>
+          <div class="box"><img src="../uploads/uploadimage_1606733628267.jpg" alt="image"/></div>
+          <div class="box"><img src="../uploads/uploadimage_1606733628267.jpg" alt="image"/></div>
+          <div class="box"><img src="../uploads/uploadimage_1606733628267.jpg" alt="image"/></div>
+
+        </div>
+        <% if(imageGalleryData) { %> 
+        
+          
+          <img src="../uploads/<%= imageGalleryData.value %>" width="150px" height="200px"  style="margin: 10px;" alt="image"/>
+
+        <span><%- imageGalleryData.Filename %></span> 
+          
+        <% } %> 
+
+        <h1>Video Gallery</h1>
+
+        <h2 style=" color: aliceblue; text-align: center; border-bottom: 3px solid aliceblue; border-left: 3px solid aliceblue; border-right: 3px solid aliceblue; border-radius: 8px; box-shadow: 4px 4px 5px rgb(197, 218, 236);">Please check out our videos</h2>
+
+        </div>
+      </div> 
+        
+       
+      <%- include('modal') %> 
+<%- include('dashboardfooteradmin') %> 

@@ -61,40 +61,46 @@ router.get('/',  function(req, res, next) {
 router.post('/addnewstaff', function(req, res, next) {
   var loginUser = req.session.adminLoginUserName;//localStorage.getItem('adminLoginUserName');
   //var adminStaffEmail = req.body.email;
+  if(loginUser) {
+
+    adminModule.findOne({Email: req.body.email}, {Email: req.body.email}).exec((err, emailRegisteredInAdminData) => {
+      if(err) throw err;
+      if(emailRegisteredInAdminData != null) {
+        return res.render('createprofile', {title: 'SaReGaMa Music Academy & GMP Studio', msg: 'Email Already Registered in Admin Data', loginUser: loginUser});
+      } else {
+        customerModel.findOne({Email: req.body.email}, {Email: req.body.email}).exec((err, emailRegisteredInCustomerData) => {
+          if(err) throw err;
+          if(emailRegisteredInCustomerData != null) {
+            return res.render('createprofile', {title: 'SaReGaMa Music Academy & GMP Studio', msg: 'Email Already Registered in Customer Data', loginUser: loginUser});
   
-  adminModule.findOne({Email: req.body.email}, {Email: req.body.email}).exec((err, emailRegisteredInAdminData) => {
-    if(err) throw err;
-    if(emailRegisteredInAdminData != null) {
-      return res.render('createprofile', {title: 'SaReGaMa Music Academy & GMP Studio', msg: 'Email Already Registered in Admin Data', loginUser: loginUser});
-    } else {
-      customerModel.findOne({Email: req.body.email}, {Email: req.body.email}).exec((err, emailRegisteredInCustomerData) => {
-        if(err) throw err;
-        if(emailRegisteredInCustomerData != null) {
-          return res.render('createprofile', {title: 'SaReGaMa Music Academy & GMP Studio', msg: 'Email Already Registered in Customer Data', loginUser: loginUser});
+          } else {
+            adminMembersTeamModel.findOne({Email: req.body.email}, {Email: req.body.email}).exec((err, emailRegisteredInAdminMembersTeamData) => {
+              if(err) throw err;
+              if(emailRegisteredInAdminMembersTeamData != null) {
+                return res.render('createprofile', {title: 'SaReGaMa Music Academy & GMP Studio', msg: 'Email Already Registered in Admin Members Team', loginUser: loginUser});
+  
+              } else {
+                var addNewAdminEmail = new adminMembersTeamModel({
+                  Email: req.body.email
+                });
+                addNewAdminEmail.save((err) => {
+                  if(err) throw err;
+                  res.render('createprofile', {title: 'SaReGaMa Music Academy & GMP Studio', msg: 'Admin Email Registered Successfully. Admin may register now', loginUser: loginUser});
+                })
+              }
+  
+            });
+          }
+            
+           
+        });
+      }
+    });
 
-        } else {
-          adminMembersTeamModel.findOne({Email: req.body.email}, {Email: req.body.email}).exec((err, emailRegisteredInAdminMembersTeamData) => {
-            if(err) throw err;
-            if(emailRegisteredInAdminMembersTeamData != null) {
-              return res.render('createprofile', {title: 'SaReGaMa Music Academy & GMP Studio', msg: 'Email Already Registered in Admin Members Team', loginUser: loginUser});
-
-            } else {
-              var addNewAdminEmail = new adminMembersTeamModel({
-                Email: req.body.email
-              });
-              addNewAdminEmail.save((err) => {
-                if(err) throw err;
-                res.render('createprofile', {title: 'SaReGaMa Music Academy & GMP Studio', msg: 'Admin Email Registered Successfully. Admin may register now', loginUser: loginUser});
-              })
-            }
-
-          });
-        }
-          
-         
-      });
-    }
-  });
+  } else {
+    res.redirect('/');
+  }
+  
 });
 
 
@@ -136,9 +142,12 @@ function checkFileType(file, cb) {
 //Exactly Correct one so far
 router.post('/dashboardsignupadmin', upload, function(req, res, next) {
   var loginUser = req.session.adminLoginUserName;//localStorage.getItem('adminLoginUserName')
-  var firstname = req.body.firstname;
-  var lastname = req.body.lastname;
-  var username = req.body.usrname;
+  
+  
+  if(loginUser) {
+    var firstname = req.body.firstname;
+    var lastname = req.body.lastname;
+    var username = req.body.usrname;
   var mobilenumber = req.body.mobilenumber;
   var email = req.body.email; 
   var nationalid = req.body.nationalid;
@@ -146,7 +155,6 @@ router.post('/dashboardsignupadmin', upload, function(req, res, next) {
 
   var Onetimepassword = crypto.randomBytes(16).toString('hex');
 
-  if(loginUser) {
       adminModule.findOne({Username: username}, {Username: username}).exec((err, dataUsernameInAdmin) => {
         if(err) throw err;
         if(dataUsernameInAdmin != null) {
@@ -333,7 +341,6 @@ router.post('/dashboardaccountactivatedadmin', function(req, res, next) {
   res.redirect('admin');
 }
 //
-
 });
 // Sign up Account Activation for admin with OTP ends here
 

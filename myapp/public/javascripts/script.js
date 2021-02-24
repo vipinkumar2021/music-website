@@ -336,6 +336,10 @@ function openSendMessageModal() {
     document.body.scrollTop = 0; //For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 
+    //closing sidenav when send msg modal is opened
+    sidenavParent.style.width = '0';
+    sideNav.style.width = '0';
+    iconBarButton.style.display = 'block';
 }
 
 //Close Send Message modal on close button or cancel button click
