@@ -2637,7 +2637,7 @@ cursor: pointer;
   display: block;
   float: left;
   width: 250px;
-  height: 100%;
+  height: auto;
   background-color: transparent;
   border-right: 5px solid aliceblue;
   padding: 80px 10px 20px 20px;
