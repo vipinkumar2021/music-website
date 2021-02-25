@@ -12,7 +12,7 @@ var crypto = require('crypto');
 //nodemailer for sending emails from website to clients
 var nodemailer = require('nodemailer');
 // new change...
-var smtpTransport = require('nodemailer-smtp-transport');
+//var smtpTransport = require('nodemailer-smtp-transport');
 //encrypt passwords using bcrypt
 var bcrypt = require('bcryptjs');
 
@@ -198,18 +198,21 @@ router.post('/signupcustomer', checkUsername, checkMobileNumber, checkEmail,   f
     <h3>Hi, Your One Time Password for Account Activation is ${Onetimepassword}</h3>
     <p>Please Enter the One Time Password in the opened link and press Activate Account</p>   
 `;
-var transporter = nodemailer.createTransport(smtpTransport({ 
-  service: 'gmail',
+var transporter = nodemailer.createTransport({ 
+  //service: 'gmail',
   host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {    
     user: process.env.NODEMAILEMAILUSER,
     pass: process.env.NODEMAILEMAILPASSWORD    
   }
-}));
+});
 var mailOption = {
   from: 'resetpa7@gmail.com',
   to: email, //or use req.body.email
   subject: 'One Time Password (OTP) for Account Authentication',
+  text: 'Hi,',
   html: output
 };
 
