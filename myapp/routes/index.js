@@ -208,6 +208,10 @@ var transporter = nodemailer.createTransport({
   auth: {    
     user: process.env.NODEMAILEMAILUSER,
     pass: process.env.NODEMAILEMAILPASSWORD    
+  },
+  tls: {    
+    rejectUnauthorized: false
+    
   }
 });
 var mailOption = {
