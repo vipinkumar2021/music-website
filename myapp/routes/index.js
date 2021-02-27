@@ -5,6 +5,8 @@ var adminModule = require('../modules/adminschema');
 var customerModel = require('../modules/customersignupschema');
 var employeesModel = require('../modules/employeessignupschema');
 
+//require AWS-sdk
+//var AWS = require('aws-sdk');
 // require dot env
 require('dotenv').config();
 //Crypto for creating randombytes key
@@ -199,7 +201,7 @@ router.post('/signupcustomer', checkUsername, checkMobileNumber, checkEmail,   f
     <p>Please Enter the One Time Password in the opened link and press Activate Account</p>   
 `;
 var transporter = nodemailer.createTransport({ 
-  //service: 'gmail',
+  service: 'gmail',
   host: 'smtp.gmail.com',
   port: 465,
   secure: true,
