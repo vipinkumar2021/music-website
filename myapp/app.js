@@ -12,6 +12,13 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var forgotusernameRouter = require('./routes/forgotusername');
+var getusernameRouter = require('./routes/getusername');
+
+var forgotpasswordRouter = require('./routes/forgotpassword');
+var resetpasswordRouter = require('./routes/resetpassword');
+
+
 var galleryRouter = require('./routes/gallery');
 var dashboardgalleryRouter = require('./routes/dashboardgallery');
 
@@ -95,6 +102,12 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.use('/forgotusername', forgotusernameRouter);
+app.use('/getusername', getusernameRouter);
+
+app.use('/forgotpassword', forgotpasswordRouter);
+app.use('/resetpassword', resetpasswordRouter);
 
 app.use('/gallery', galleryRouter);
 app.use('/dashboardgallery', dashboardgalleryRouter);
