@@ -133,6 +133,9 @@ router.get('/', checkLoginUser, function(req, res, next) {
     
               
 
+              var aws = require("aws-sdk");
+              const ses = new aws.SES({"accessKeyId": process.env.SES_I_AM_USER_ACCESS_KEY, "secretAccessKey": process.env.SES_I_AM_USER_SECRET_ACCESS_KEY, "region": process.env.AWS_SES_REGION});
+              
               
 // Send Email from website to any email id starts here
 router.post('/Send', function(req, res, next) {
@@ -152,7 +155,69 @@ router.post('/Send', function(req, res, next) {
     <p>${req.body.writemessage}</p>  
   `;  
 
+  //
+  // exactly correct one for production
+let params = {
+  // send to list
+  Destination: {
+      ToAddresses: [
+          messageto
+      ]
+  },
+  Message: {
+      Body: {
+          Html: {
+              Charset: "UTF-8",
+              Data: output//"<p>this is test body.</p>"
+          },
+          Text: {
+              Charset: "UTF-8",
+              Data: 'Hey,'
+          }
+      },
+      
+      Subject: {
+          Charset: 'UTF-8',
+          Data: "You got a new message."
+      }
+  },
+  Source: 'vipinkmboj21@gmail.com', // must relate to verified SES account
+  ReplyToAddresses: [
+      messageto
+  ],
+};
+
+// this sends the email
+ses.sendEmail(params, (err) => {
+  if(err) {
+    res.render('dashboardadmin', { title: 'frontendwebdeveloper', msg:'Error Occured, Email Sending Failed', loginUser: loginUser, staffdata: '', staffid: '', file: '', uploadedImage: '', savedData: '' });
+  } else {
+    var outboxDetails = new outboxModel({
+      MessageTo: messageto,
+      Message: req.body.writemessage
+    });
+    outboxDetails.save((err) => {
+      if(err) {
+        res.render('dashboardadmin', { title: 'frontendwebdeveloper', msg:'Outbox did not fetch data for this message', loginUser: loginUser, staffdata: '', staffid: '', file: '', uploadedImage: '', savedData: '' });
+
+      } else {
+
+        res.render('dashboardadmin', { title: 'frontendwebdeveloper', msg:'Email Sent Successfully', loginUser: loginUser, staffdata: '', staffid: '', file: '', uploadedImage: '', savedData: '' });
+
+      }
+
+
+      
+        
+    }); 
+    
+  }
+});
+
+
+//
   //Nodemailer strts here...
+  /* uncomment it later
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -181,7 +246,9 @@ transporter.sendMail(mailOption, function(err, info) {
   if(err) throw err;
   res.render('dashboardadmin', { title: 'frontendwebdeveloper', msg:'Email Sent Successfully', loginUser: loginUser, staffdata: '', staffid: '', file: '', uploadedImage: '', savedData: '' });
 });
+
 });
+uncomment it later */
 //Nodemailer ends here
 
   } else {
