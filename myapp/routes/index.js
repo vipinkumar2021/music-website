@@ -235,7 +235,7 @@ router.post('/signupcustomer', checkUsername, checkMobileNumber, checkEmail,   f
     <p>Please Enter the One Time Password in the opened link and press Activate Account</p>   
 `;
 
-//
+// exactly correct one for production
 let params = {
   // send to list
   Destination: {
