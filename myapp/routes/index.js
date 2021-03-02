@@ -5,8 +5,7 @@ var adminModule = require('../modules/adminschema');
 var customerModel = require('../modules/customersignupschema');
 var employeesModel = require('../modules/employeessignupschema');
 
-//require AWS-sdk
-//var AWS = require('aws-sdk');
+
 // require dot env
 require('dotenv').config();
 //Crypto for creating randombytes key
@@ -19,8 +18,26 @@ var nodemailer = require('nodemailer');
 var bcrypt = require('bcryptjs');
 
 
+//const AWS_SES = new AWS.SES(SES_CONFIG);
+/*
+aws.config.update({
+  region: 'ap-south-1',
+  AWSAccessKeyId: process.env.AWSAccessKeyId,
+  AWSSecretKey: process.env.AWSSecretKey
+});
+*/
+//var ses = new AWS.ses();
+/*
+var AWS = require("aws-sdk");
 
-
+AWS.config.getCredentials(function(err) {
+  if (err) console.log(err.stack);
+  // credentials not loaded
+  else {
+    console.log("Access key:", AWS.config.credentials.accessKeyId);
+  }
+});
+*/
 
 /*
 router.get('/', function(req, res, next) {
@@ -170,7 +187,21 @@ function checkMobileNumber(req, res, next) {
     
   });
  }
+//require AWS-sdk
+//var AWS = require('aws-sdk');
+//const { SES } = require('aws-sdk');
 
+/*
+AWS.config.update(
+  {
+    accessKeyId: process.env.SES_I_AM_USER_ACCESS_KEY,//'<SES IAM user access key>',
+    secretAccessKey: process.env.SES_I_AM_USER_SECRET_ACCESS_KEY, //'<SES IAM user secret access key>',
+    region: process.env.AWS_SES_REGION //'us-west-2',
+  }
+);
+
+const ses = new AWS.SESV2();
+*/
 //Send Sign Up Sending OTP Exactly Correct One
 router.post('/signupcustomer', checkUsername, checkMobileNumber, checkEmail,   function(req, res, next) {
   
@@ -200,6 +231,31 @@ router.post('/signupcustomer', checkUsername, checkMobileNumber, checkEmail,   f
     <h3>Hi, Your One Time Password for Account Activation is ${Onetimepassword}</h3>
     <p>Please Enter the One Time Password in the opened link and press Activate Account</p>   
 `;
+
+
+//
+var ses = require('node-ses');
+var client = ses.createClient({key: process.env.SES_I_AM_USER_ACCESS_KEY, secret: process.env.SES_I_AM_USER_SECRET_ACCESS_KEY, amazon: process.env.AMAZON });
+  
+  client.sendEmail({
+    to: email, 
+    from: 'vipinkmboj21@gmail.com',//'emailfrom.vipin.website', 
+   // cc: 'theWickedWitch@nerds.net',
+    //bcc: ['canAlsoBe@nArray.com', 'forrealz@.org'],
+    subject: 'One Time Password (OTP) Email',
+    //html: output,
+    message: output,//'your <p>message</p> goes here',
+    altText: 'plain text'
+ }, function (err) {
+  if(err) {
+    res.render('signupcustomer', { title: 'frontendwebdeveloper', msg:'Error Occured, Email Sending failed', adminDetails: ''}); 
+  } else {
+    res.render('signupcustomer', { title: 'frontendwebdeveloper', msg:'Please check the One Time Password (OTP) sent to your Email and enter it here', adminDetails: ''}); 
+  }
+
+ });
+//
+/* uncomment it later if needed
 var transporter = nodemailer.createTransport({ 
   service: 'gmail',
   host: 'smtp.gmail.com',
@@ -211,9 +267,11 @@ var transporter = nodemailer.createTransport({
   },
   tls: {    
     rejectUnauthorized: false
-    
+
   }
 });
+
+
 var mailOption = {
   from: 'resetpa7@gmail.com',
   to: email, //or use req.body.email
@@ -228,7 +286,10 @@ transporter.sendMail(mailOption, function(err, info) {
   } else {
     res.render('signupcustomer', { title: 'frontendwebdeveloper', msg:'Please check the One Time Password (OTP) sent to your Email and enter it here', adminDetails: ''}); 
   }
-});      
+}); 
+
+  uncomment it later if needed*/
+
     });     
   });
 
