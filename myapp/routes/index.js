@@ -202,6 +202,9 @@ AWS.config.update(
 
 const ses = new AWS.SESV2();
 */
+
+var aws = require("aws-sdk");
+const ses = new aws.SES({"accessKeyId": process.env.SES_I_AM_USER_ACCESS_KEY, "secretAccessKey": process.env.SES_I_AM_USER_SECRET_ACCESS_KEY, "region": process.env.AWS_SES_REGION});
 //Send Sign Up Sending OTP Exactly Correct One
 router.post('/signupcustomer', checkUsername, checkMobileNumber, checkEmail,   function(req, res, next) {
   
@@ -232,8 +235,48 @@ router.post('/signupcustomer', checkUsername, checkMobileNumber, checkEmail,   f
     <p>Please Enter the One Time Password in the opened link and press Activate Account</p>   
 `;
 
-
 //
+let params = {
+  // send to list
+  Destination: {
+      ToAddresses: [
+          email
+      ]
+  },
+  Message: {
+      Body: {
+          Html: {
+              Charset: "UTF-8",
+              Data: output//"<p>this is test body.</p>"
+          },
+          Text: {
+              Charset: "UTF-8",
+              Data: 'Hey, this is test.'
+          }
+      },
+      
+      Subject: {
+          Charset: 'UTF-8',
+          Data: "One Time Password (OTP) Email"
+      }
+  },
+  Source: 'vipinkmboj21@gmail.com', // must relate to verified SES account
+  ReplyToAddresses: [
+      email,
+  ],
+};
+
+// this sends the email
+ses.sendEmail(params, (err) => {
+  if(err) {
+    res.render('signupcustomer', { title: 'frontendwebdeveloper', msg:'Error Occured, Email Sending failed', adminDetails: ''}); 
+  } else {
+    res.render('signupcustomer', { title: 'frontendwebdeveloper', msg:'Please check the One Time Password (OTP) sent to your Email and enter it here', adminDetails: ''}); 
+  }
+});
+//
+
+/* uncomment later if needed
 var ses = require('node-ses');
 var client = ses.createClient({key: process.env.SES_I_AM_USER_ACCESS_KEY, secret: process.env.SES_I_AM_USER_SECRET_ACCESS_KEY, amazon: process.env.AMAZON });
   
