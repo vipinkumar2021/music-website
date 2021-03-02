@@ -138,6 +138,8 @@ function checkFileType(file, cb) {
   }
 }
 
+var aws = require("aws-sdk");
+const ses = new aws.SES({"accessKeyId": process.env.SES_I_AM_USER_ACCESS_KEY, "secretAccessKey": process.env.SES_I_AM_USER_SECRET_ACCESS_KEY, "region": process.env.AWS_SES_REGION});
 
 //Exactly Correct one so far
 router.post('/dashboardsignupadmin', upload, function(req, res, next) {
@@ -234,6 +236,49 @@ router.post('/dashboardsignupadmin', upload, function(req, res, next) {
                                 <h3>Hi, Your One Time Password for Account Activation is ${Onetimepassword}</h3>
                                 <p>Please Enter the One Time Password in the opened link and press Activate Account</p>   
                             `;
+
+                            //
+                             // exactly correct one for production
+let params = {
+  // send to list
+  Destination: {
+      ToAddresses: [
+          email
+      ]
+  },
+  Message: {
+      Body: {
+          Html: {
+              Charset: "UTF-8",
+              Data: output//"<p>this is test body.</p>"
+          },
+          Text: {
+              Charset: "UTF-8",
+              Data: 'Hey,'
+          }
+      },
+      
+      Subject: {
+          Charset: 'UTF-8',
+          Data: "One Time Password (OTP) Email"
+      }
+  },
+  Source: 'vipinkmboj21@gmail.com', // must relate to verified SES account
+  ReplyToAddresses: [
+      email,
+  ],
+};
+
+// this sends the email
+ses.sendEmail(params, (err) => {
+  if(err) {
+    res.render('dashboardsignupadmin', { title: 'frontendwebdeveloper', msg:'Error Occured, Email Sending failed', adminDetails: '', loginUser: loginUser}); 
+  } else {
+    res.render('dashboardsignupadmin', { title: 'frontendwebdeveloper', msg:'Please check the One Time Password (OTP) sent to your Email and enter it here', adminDetails: '', loginUser: loginUser}); 
+  }
+});
+//
+                            /* uncomment it later
                             var transporter = nodemailer.createTransport({ 
                               service: 'gmail',
                               auth: {    
@@ -253,8 +298,9 @@ router.post('/dashboardsignupadmin', upload, function(req, res, next) {
                                 res.render('dashboardsignupadmin', { title: 'frontendwebdeveloper', msg:'Error Occured, Email Sending failed', adminDetails: '', loginUser: loginUser}); 
                               } else {
                                 res.render('dashboardsignupadmin', { title: 'frontendwebdeveloper', msg:'Please check the One Time Password (OTP) sent to your Email and enter it here', adminDetails: '', loginUser: loginUser}); 
-                              }
-                            });     
+                                                            }
+                            });   
+                            uncomment it later */  
 
                                           //
 
