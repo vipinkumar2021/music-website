@@ -56,7 +56,7 @@
           </ul>
           <ul class="dashboard-logged-in-dropdown">
             <li>
-                <a href="/dashboardadmin" style="color: rgb(71, 157, 255);">
+                <a href="/dashboardadmin" style="color: rgb(71, 157, 255);" class="loggedinas">
                     <i>
                       <% if(loginUser){ %>  
                         <%= loginUser %> 
@@ -94,7 +94,7 @@
             <li>
               <a href="javascript:void(0)" class="closeBtn">&times;</a>
             </li>
-            <li>
+            <li class="loggedinas">
               <a href="/dashboardadmin" >
                   Logged in As: <% if(loginUser){ %>  
                       <%= loginUser %> 

@@ -13,6 +13,7 @@ body {
   height: 100vh;
   background-size: cover;
   /*background-color: brown;*/
+  overflow: visible;
  
 }
 @media(max-width: 450px) {
@@ -117,7 +118,10 @@ body {
 #dashboard-logged-in-dropdown:hover {
   display: none;
 }
-
+.loggedinas {
+  font: size 0.5em;
+  
+}
 @media screen and (max-width: 1020px) {
   .header .headernav ul:not(:last-child) {
     display: none;
