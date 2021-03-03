@@ -563,7 +563,7 @@ body {
   border-left: none;
   border-right: none;
 }
-@media(max-width: 380px) {
+@media(max-width: 398px) {
   .main .welcome .row {
     display: block;
     width: 100%;
