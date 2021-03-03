@@ -21,7 +21,7 @@ router.get('/',  function(req, res, next) {
       } else if(loginUser.loginUserEmployee){
         res.render('dashboardgallery', { title: 'Front End Web Developer', msg:'', loginUser: loginUser.loginUserEmployee, imageGalleryData: imageGalleryData });
       } else if(loginUser.loginUserAdmin) {
-        res.render('dashboardgallery', { title: 'Front End Web Developer', msg:'', loginUser: loginUser.loginUserAdmin, imageGalleryData: imageGalleryData });
+        res.render('dashboardgalleryadmin', { title: 'Front End Web Developer', msg:'', loginUser: loginUser.loginUserAdmin, imageGalleryData: imageGalleryData });
       } else {
         res.redirect('gallery');
       }   
