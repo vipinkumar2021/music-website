@@ -421,10 +421,12 @@ body {
     
   }  
   .footer .row .column ul {    
-    display: flex;    
+    display: flex; 
+    flex-direction: row;   
     width: 100%;
     padding: 0;
     margin: 0;
+    
     
   } 
   .footer .row .column-1 ul li{    
@@ -441,9 +443,10 @@ body {
   } 
 
 }
+
 @media screen and (max-width: 700px) {
   .footer .row .column-1 ul li{    
-    padding: 35px;
+    padding: 30px;
     
   } 
   
