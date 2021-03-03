@@ -2516,6 +2516,7 @@ cursor: pointer;
   background-color: transparent; 
   text-align: center;
   color: aliceblue; 
+  z-index: 2;
 }
 
 .admin button {
@@ -2639,13 +2640,16 @@ cursor: pointer;
  }
 .dashboardadmin {
   width: 100%;
-  height: 100vh;
-  padding-top: 60px;
+  height: auto;
+  padding-top: 70px;
   /*margin-top: 60px;*/  
   background-color: transparent; 
   text-align: center;
   color: aliceblue; 
+  z-index: 2;
+   
 }
+/*
 .sidenav-dashboardadmin {
   display: block;
   float: left;
@@ -2659,6 +2663,7 @@ cursor: pointer;
   list-style: none;
 }
 
+
 .sidenav-dashboardadmin ul li a {
   color: aliceblue;
   text-decoration: none;
@@ -2669,14 +2674,23 @@ cursor: pointer;
   color:  rgb(90, 89, 89);
   
 }
+*/
+.dashboardadmin img {
+  margin-bottom: 20px;
+}
 .dashboardadmin .profile-details {
-  width: 70%;
-  float: right;
+  width: 100%;
+  height: auto;
+  
+  text-align: left;
+  /*float: right;
   height: auto;
   border: 1px solid aliceblue;
   padding: 20px;
   margin: 20px;  
   text-align: left;
+  */
+  
 }
 .dashboardadmin .profile-details .row {
   display: flex;
@@ -2692,10 +2706,13 @@ cursor: pointer;
   padding: 10px;
 }
 .adminstafflist {
-  width: 75%;
-  height: 100vh;
-  float: right;
+  width: 100%;
+  height: auto;
+  padding: 0;
   padding-top: 60px;
+  /*
+  float: right;
+  
   /*margin-top: 60px;*/  
   background-color: transparent; 
   text-align: center;
@@ -2717,6 +2734,17 @@ cursor: pointer;
 }
 .adminstafflist ul li a:hover {
   color: rgb(105, 105, 214);
+}
+@media screen and (max-width: 550px) {
+  .adminstafflist ul li {
+    border: 2px solid aliceblue;
+    border-radius: 5px;
+    margin: 10px;
+  }
+  .adminstafflist ul li a {
+    display: block;
+    
+  }
 }
 .make-notes {
   width: 70%;
@@ -2925,11 +2953,15 @@ fieldset {
   
 }
 .inbox .inbox-msg-box {
+  width: 100%;
   height: auto;
-  margin: 10px 10px 10px 260px;
-  padding: 15px;
   border: 3px solid aliceblue;
   border-radius: 5px;
+  margin-bottom: 10px;
+  /*
+  margin: 10px 10px 10px 260px;
+  padding: 15px;
+  
   /*margin-top: 60px;*/  
   background-color: transparent; 
   text-align: left;
@@ -2960,7 +2992,20 @@ fieldset {
   margin-left: 7px;
   margin-right: 7px;
 }
-
+@media screen and (max-width: 380px) {
+  .inbox .inbox-msg-box ul li a {
+    display: block;
+    width: 50%;
+    margin-bottom: 8px;
+  }
+}
+@media screen and (max-width: 325px) {
+  .inbox .inbox-msg-box ul li a {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
 /* inbox css ends*/
 
 /* Create Profile css starts
@@ -3059,18 +3104,15 @@ display: block;
 /* rsvp modal css ends here */
 /* Wedding Invitation template demo css ends here*/
 .admin-signup-container {
-  width: auto;
+  width: 100%;
   height: auto;
-  padding: 10px;
-  
-  
-  margin-left: 260px;
+  padding: 10px; 
   overflow: hidden;
 }
 
 .admin-signup-container .row-1 {
-  width: inherit;
-  height: inherit;
+  width: 100%;
+  height: auto;
   margin-bottom: 20px;
   border: 2px solid aliceblue;
   border-radius: 5px;
@@ -3091,6 +3133,8 @@ display: block;
    font-size: 18px;
 }
 .admin-signup-container .row input{
+  width: 100%;
+  height: auto;
   font-size: 18px;
   padding: 5px;
   background-color: transparent;
@@ -3098,12 +3142,16 @@ display: block;
   border-radius: 5px;
   color: aliceblue;
 }
-
+@media screen and (max-width: 325px) {
+  .upload-file {
+    width: 100%;
+  }
+}
 /* upload file container*/
  .upload-file-container {
-  width: 65%;
+  width: 100%;
   height: auto;
-  margin: 10px 50px 10px 260px;
+  margin: 10px ;
   padding: 0;
   border: 3px solid aliceblue;
   border-radius: 5px;
@@ -3156,7 +3204,17 @@ display: block;
   padding: 10px;
   margin: 10px;
 }
-
+@media screen and (max-width: 350) {
+  .upload-file-container form input {
+    width:  100%;
+  }
+  .upload-file-container form textarea {
+    width:  100%;
+  }
+  .upload-file-container form button {
+    width:  100%;
+  }
+}
 .recyclebin h3 {
   text-align: left;
   margin-left: 270px;

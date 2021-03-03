@@ -9,7 +9,7 @@ var nodemailer = require('nodemailer');
     var loginUser = req.session.adminLoginUserName;//localStorage.getItem('adminLoginUserName');
   
     if(loginUser) {
-        res.render('createprofile', { title: 'SareGaMa Music Academy & GMP Studio', msg:'', loginUser: loginUser});
+        res.render('editprofile', { title: 'SareGaMa Music Academy & GMP Studio', msg:'', loginUser: loginUser});
       } else {
         res.redirect('admin');
       }   
