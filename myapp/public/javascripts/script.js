@@ -5,7 +5,7 @@ function openNav() {
     var iconBarButton = document.getElementsByClassName('iconbar')[0];
     var sidenavParent = document.querySelector('.sidenav-parent');
     sidenavParent.style.width = '100%';
-    sideNav.style.width = '300px';
+    sideNav.style.width = '270px';
     iconBarButton.style.display = 'none';
 }
 
