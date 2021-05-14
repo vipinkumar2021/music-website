@@ -442,6 +442,7 @@ body {
   
   /* sidenav css ends */
 
+  
 /* footer css starts*/
 .footer {
   width: 100%;
@@ -563,6 +564,7 @@ body {
   background-color: transparent;
   
 }
+/*
 @media screen and (max-width: 750px) {
   .footer .row {
   display: block;
@@ -585,7 +587,7 @@ body {
   } 
   .footer .row .column-1 ul li{    
     /* padding: 45px; */
-    padding: 4.5rem;
+   /* padding: 4.5rem;
 
     
   } 
@@ -595,7 +597,7 @@ body {
 
   .footer .row .column-2 ul li{    
     /*padding: 10px; */
-    padding: 1rem;
+   /* padding: 1rem;
     
   } 
 
@@ -604,13 +606,13 @@ body {
 @media screen and (max-width: 700px) {
   .footer .row .column-1 ul li{    
     /* padding: 30px; */
-    padding: 3rem;
+ /*   padding: 3rem;
     
   } 
   
   .footer .row .column-2 ul li{    
     /* padding: 8px; */
-    padding: .8rem;
+  /*  padding: .8rem;
     
   }
 }
@@ -622,28 +624,28 @@ body {
     padding-left: 30px;
 
     */
-    padding-left: 3rem;
+ /*   padding-left: 3rem;
     
   }
 }
 @media screen and (max-width: 600px) {
   .footer .row .column-1 ul li{    
     /*padding: 30px; */
-    padding: 3rem;
+  /*  padding: 3rem;
     
   } 
 }
 @media screen and (max-width: 550px) {
   .footer .row .column-1 ul li{    
     /* padding: 25px; */
-    padding: 2.5rem;
+   /* padding: 2.5rem;
     
   } 
 }
 @media screen and (max-width: 500px) {
   .footer .row .column-1 ul li{    
     /* padding: 20px; */
-    padding: 2rem;
+  /*  padding: 2rem;
     
   } 
 }
@@ -652,21 +654,21 @@ body {
     /*  
     padding: 15px;
     */
-    padding: 1.5rem;
+  /*  padding: 1.5rem;
     
   } 
 }
 @media screen and (max-width: 400px) {
   .footer .row .column-1 ul li{    
     /* padding: 10px; */
-    padding: 1rem;
+  /*  padding: 1rem;
     
   } 
 }
 @media screen and (max-width: 350px) {
   .footer .row .column-1 ul li{    
     /* padding: 8px; */
-    padding: .8rem;
+  /*  padding: .8rem;
     
   } 
 }
@@ -674,11 +676,11 @@ body {
   .footer .row .column-1 ul {    
     display: block;
     /* padding-left: 30px; */
-    padding-left: 3rem;
+   /* padding-left: 3rem;
   }
   .footer .row .column-1 ul li {
     /*  padding: 5px; */
-    padding: .5rem;
+   /* padding: .5rem;
   } 
 }
 /* footer css ends */
@@ -690,7 +692,7 @@ body {
    height: auto;
    /* padding-top: 65px; */
    padding-top: 6.5rem;
-   margin-top: 0;  
+   margin: 0;  
  }
  .main .welcome h1 {
    text-align: center;
@@ -718,17 +720,19 @@ body {
    /* 
    padding: 15px 15px 0 15px;
    */
-   padding: 1.5rem 1.5rem 0 1.5rem;
+   /*padding: 0.5rem 0.5rem 0 0.5rem; */
+   padding: 1%;
    
  }
+ /*
  @media(max-width: 420px) {
    .main .welcome .row .column h3 {
      text-align: center;
      /* 
      padding: 10px 10px 0 10px;
 
-     */
-     padding: 1rem 1rem 0 1rem;
+     */ /*
+     padding: 1%;
      
    }
  }
@@ -737,11 +741,12 @@ body {
      text-align: center;
      /*
      padding: 6px 6px 0 6px; */
-     padding: .6rem .6rem 0 .6rem;
+    /* padding: 1%;
      
    }
    
  }
+ */
  .main .welcome .row .column-right {
    color: white;  
    text-align: center;
@@ -872,7 +877,7 @@ body {
      left: 0;
      width: 100%;
      height: 100vh;
-     overflow: auto;
+     
      background-color: transparent; 
      display: none;
      z-index: 2;
@@ -3480,6 +3485,7 @@ body {
    display: grid;
    grid-gap: 1rem;
    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+   margin: 2em;
  }
  .box {
    background-color: transparent;
@@ -3498,3 +3504,90 @@ body {
    cursor: pointer;
  }
  
+
+
+ /*mobile css */
+@media only screen and (min-width: 280px) { 
+  body {
+    width: 100%;
+    user-zoom: fixed;
+  }
+  .grid-container {
+    width: 100%;
+  }
+  .item1, .item3, .item5 {
+    width: 100%;
+  }
+
+  /* */
+
+
+}
+@media only screen and (min-width: 360px) { 
+  body {
+    width: 100%;
+    user-zoom: fixed;
+  }
+  .grid-container {
+    width: 100%;
+  }
+  .item1, .item3, .item5 {
+    width: 100%;
+  }
+
+  /* */
+
+
+}
+/*tablet css */
+@media only screen and (min-width: 600px) {
+  body {
+    width: 100%;
+    /*user-zoom: fixed; */
+  }
+  .grid-container {
+    width: 100%;
+  }
+  .item1, .item3, .item5 {
+    width: 100%;
+  }
+  /* For tablets: 
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+  */
+}
+@media only screen and (min-width: 768px) {
+  body {
+    width: 100%;
+  }
+  .grid-container {
+    width: 100%;
+  }
+  .item1, .item3, .item5 {
+    width: 100%;
+  }
+  /* For desktop: 
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+  */
+}
